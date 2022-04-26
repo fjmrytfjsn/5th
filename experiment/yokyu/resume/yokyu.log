@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.8.3-191112-2.6 (utf8.euc) (TeX Live 2020) (preloaded format=platex 2021.12.19)  26 APR 2022 14:16
+This is e-pTeX, Version 3.14159265-p3.8.3-191112-2.6 (utf8.euc) (TeX Live 2020) (preloaded format=platex 2021.12.19)  26 APR 2022 15:10
 entering extended mode
  restricted \write18 enabled.
 **yokyu.tex
@@ -454,20 +454,28 @@ LaTeX Font Info:    Font shape `JT1/gt/m/n' will be
 (Font)              scaled to size 13.83836pt on input line 31.
 LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
 (Font)              scaled to size 13.83836pt on input line 31.
- [1] (./yokyu.aux) ) 
+File: materials/dfd.pdf Graphic file (type pdf)
+<materials/dfd.pdf>
+LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
+(Font)              scaled to size 8.64899pt on input line 56.
+LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
+(Font)              scaled to size 8.64899pt on input line 56.
+ [1] [2] (./yokyu.aux) ) 
 Here is how much of TeX's memory you used:
- 8429 strings out of 479479
- 152382 string characters out of 5871244
- 459650 words of memory out of 5000000
- 26003 multiletter control sequences out of 15000+600000
- 414125 words of font info for 78 fonts, out of 8000000 for 9000
+ 8444 strings out of 479479
+ 152583 string characters out of 5871244
+ 462658 words of memory out of 5000000
+ 26012 multiletter control sequences out of 15000+600000
+ 414705 words of font info for 81 fonts, out of 8000000 for 9000
  934 hyphenation exceptions out of 8191
- 76i,7n,78p,279b,382s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 76i,7n,78p,279b,540s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on yokyu.dvi (2 pages, 2064 bytes).
+Output written on yokyu.dvi (3 pages, 5196 bytes).
 
 
 yokyu.dvi -> yokyu.pdf
-[1][2]
-34159 bytes written
+[1][2][3
+dvipdfmx:warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
+]
+119088 bytes written
 
