@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.8.3-191112-2.6 (utf8.euc) (TeX Live 2020) (preloaded format=platex 2021.12.19)  26 APR 2022 13:51
+This is e-pTeX, Version 3.14159265-p3.8.3-191112-2.6 (utf8.euc) (TeX Live 2020) (preloaded format=platex 2021.12.19)  26 APR 2022 14:16
 entering extended mode
  restricted \write18 enabled.
 **yokyu.tex
@@ -454,73 +454,20 @@ LaTeX Font Info:    Font shape `JT1/gt/m/n' will be
 (Font)              scaled to size 13.83836pt on input line 31.
 LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
 (Font)              scaled to size 13.83836pt on input line 31.
- (./yokyu.bbl
-
-LaTeX Warning: Empty `thebibliography' environment on input line 3.
-
-) [1] (./yokyu.aux) ) 
+ [1] (./yokyu.aux) ) 
 Here is how much of TeX's memory you used:
- 8430 strings out of 479479
- 152379 string characters out of 5871244
- 458650 words of memory out of 5000000
- 26002 multiletter control sequences out of 15000+600000
- 413790 words of font info for 77 fonts, out of 8000000 for 9000
+ 8429 strings out of 479479
+ 152382 string characters out of 5871244
+ 459650 words of memory out of 5000000
+ 26003 multiletter control sequences out of 15000+600000
+ 414125 words of font info for 78 fonts, out of 8000000 for 9000
  934 hyphenation exceptions out of 8191
  76i,7n,78p,279b,382s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on yokyu.dvi (2 pages, 1476 bytes).
+Output written on yokyu.dvi (2 pages, 2064 bytes).
 
-This is pBibTeX, Version 0.99d-j0.33 (utf8.euc) (TeX Live 2020)
-Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
-The top-level auxiliary file: yokyu.aux
-The style file: jplain.bst
-I found no \citation commands---while reading file yokyu.aux
-Database file #1: reference.bib
-You've used 0 entries,
-            2622 wiz_defined-function locations,
-            592 strings with 4541 characters,
-and the built_in function-call counts, 18 in all, are:
-= -- 0
-> -- 0
-< -- 0
-+ -- 0
-- -- 0
-* -- 2
-:= -- 7
-add.period$ -- 0
-call.type$ -- 0
-change.case$ -- 0
-chr.to.int$ -- 0
-cite$ -- 0
-duplicate$ -- 0
-empty$ -- 1
-format.name$ -- 0
-if$ -- 1
-int.to.chr$ -- 0
-int.to.str$ -- 0
-missing$ -- 0
-newline$ -- 3
-num.names$ -- 0
-pop$ -- 0
-preamble$ -- 1
-purify$ -- 0
-quote$ -- 0
-skip$ -- 1
-stack$ -- 0
-substring$ -- 0
-swap$ -- 0
-text.length$ -- 0
-text.prefix$ -- 0
-top$ -- 0
-type$ -- 0
-warning$ -- 0
-while$ -- 0
-width$ -- 0
-write$ -- 2
-is.kanji.str$ -- 0
-(There was 1 error message)
 
 yokyu.dvi -> yokyu.pdf
 [1][2]
-24946 bytes written
+34159 bytes written
 
