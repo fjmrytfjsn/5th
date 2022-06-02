@@ -6,20 +6,24 @@
 
 ```python:area.py
 def triangle():
-    height = 2
-    base = 5
-    return height*bace/2
+    return tri_height*tri_base/2
 
 def rectangle(height, width):
     return height*width
 
 def main():
+    global tri_height
+    global tri_base
+    tri_height = 2
+    tri_base = 5
     print(triangle())
-    print(rectangle(2, 5))
+    rec_height = 2
+    rec_width = 5
+    print(rectangle(rec_height, rec_width))
 
 main()
 ```
 
-これらは、三角形および四角形の面積を出力するプログラムである。
+これらは、三角形および長方形の面積を出力するプログラムである。
 
-mainとtriangleは
+mainとtriangleは外部結合、mainとrectangleはスタンプ結合である。
