@@ -4,30 +4,22 @@
 
 今回のユースケースではプログラムの作成をほとんど行わないため、過去に作成したプログラムから例を挙げる。
 
-```python:density.py
-import random
+```python:area.py
+def triangle():
+    height = 2
+    base = 5
+    return height*bace/2
 
-class Car:
-    @classmethod
-    def drive(self, distance):
-        print(f'{distance} drived')   
+def rectangle(height, width):
+    return height*width
 
+def main():
+    print(triangle())
+    print(rectangle(2, 5))
 
-class AirPlane:
-    @classmethod
-    def fly(self, distance):
-        print(f'{distance} flew')
-
-
-def is_car():
-    return random.randint(0, 1)
-
-if ( is_car()  ):
-    my_car = Car()
-    my_car.drive(200)
-else:
-    my_plane = AirPlane()
-    my_plane.fly(200)
+main()
 ```
 
-これは、自動車および飛行機の飛行距離を出力するプログラムである。
+これらは、三角形および四角形の面積を出力するプログラムである。
+
+mainとtriangleは
