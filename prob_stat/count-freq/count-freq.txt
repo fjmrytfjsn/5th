@@ -1,0 +1,216 @@
+Script started on 2022-06-29 11:46:31+09:00 [TERM="xterm-256color" TTY="/dev/pts/2" COLUMNS="104" LINES="48"]
+]0;fjsn@SSD: ~/directory/5th/prob_stat/count-freq[01;32mfjsn@SSD[00m:[01;34m~/directory/5th/prob_stat/count-freq[00m$ ulimit -a
+core file size          (blocks, -c) 0
+data seg size           (kbytes, -d) unlimited
+scheduling priority             (-e) 0
+file size               (blocks, -f) unlimited
+pending signals                 (-i) 29523
+max locked memory       (kbytes, -l) 65536
+max memory size         (kbytes, -m) unlimited
+open files                      (-n) 1024
+pipe size            (512 bytes, -p) 8
+POSIX message queues     (bytes, -q) 819200
+real-time priority              (-r) 0
+stack size              (kbytes, -s) 8192
+cpu time               (seconds, -t) unlimited
+max user processes              (-u) 29523
+virtual memory          (kbytes, -v) unlimited
+file locks                      (-x) unlimited
+]0;fjsn@SSD: ~/directory/5th/prob_stat/count-freq[01;32mfjsn@SSD[00m:[01;34m~/directory/5th/prob_stat/count-freq[00m$ ulimit -s unlimited
+]0;fjsn@SSD: ~/directory/5th/prob_stat/count-freq[01;32mfjsn@SSD[00m:[01;34m~/directory/5th/prob_stat/count-freq[00m$ ulimit -a
+core file size          (blocks, -c) 0
+data seg size           (kbytes, -d) unlimited
+scheduling priority             (-e) 0
+file size               (blocks, -f) unlimited
+pending signals                 (-i) 29523
+max locked memory       (kbytes, -l) 65536
+max memory size         (kbytes, -m) unlimited
+open files                      (-n) 1024
+pipe size            (512 bytes, -p) 8
+POSIX message queues     (bytes, -q) 819200
+real-time priority              (-r) 0
+stack size              (kbytes, -s) unlimited
+cpu time               (seconds, -t) unlimited
+max user processes              (-u) 29523
+virtual memory          (kbytes, -v) unlimited
+file locks                      (-x) unlimited
+]0;fjsn@SSD: ~/directory/5th/prob_stat/count-freq[01;32mfjsn@SSD[00m:[01;34m~/directory/5th/prob_stat/count-freq[00m$ gcc count-freq-1000.c
+]0;fjsn@SSD: ~/directory/5th/prob_stat/count-freq[01;32mfjsn@SSD[00m:[01;34m~/directory/5th/prob_stat/count-freq[00m$ ./a.out
+     0 -  5000 : 63
+  5000 - 10000 : 47
+ 10000 - 15000 : 53
+ 15000 - 20000 : 40
+ 20000 - 25000 : 56
+ 25000 - 30000 : 46
+ 30000 - 35000 : 54
+ 35000 - 40000 : 59
+ 40000 - 45000 : 56
+ 45000 - 50000 : 37
+ 50000 - 55000 : 39
+ 55000 - 60000 : 58
+ 60000 - 65000 : 43
+ 65000 - 70000 : 43
+ 70000 - 75000 : 42
+ 75000 - 80000 : 66
+ 80000 - 85000 : 49
+ 85000 - 90000 : 48
+ 90000 - 95000 : 44
+ 95000 -100000 : 57
+]0;fjsn@SSD: ~/directory/5th/prob_stat/count-freq[01;32mfjsn@SSD[00m:[01;34m~/directory/5th/prob_stat/count-freq[00m$ gcc count-freq-10000.c
+]0;fjsn@SSD: ~/directory/5th/prob_stat/count-freq[01;32mfjsn@SSD[00m:[01;34m~/directory/5th/prob_stat/count-freq[00m$ ./a.out
+     0 -  5000 : 496
+  5000 - 10000 : 507
+ 10000 - 15000 : 530
+ 15000 - 20000 : 506
+ 20000 - 25000 : 535
+ 25000 - 30000 : 529
+ 30000 - 35000 : 479
+ 35000 - 40000 : 558
+ 40000 - 45000 : 515
+ 45000 - 50000 : 498
+ 50000 - 55000 : 487
+ 55000 - 60000 : 502
+ 60000 - 65000 : 490
+ 65000 - 70000 : 457
+ 70000 - 75000 : 441
+ 75000 - 80000 : 492
+ 80000 - 85000 : 502
+ 85000 - 90000 : 506
+ 90000 - 95000 : 492
+ 95000 -100000 : 478
+]0;fjsn@SSD: ~/directory/5th/prob_stat/count-freq[01;32mfjsn@SSD[00m:[01;34m~/directory/5th/prob_stat/count-freq[00m$ gcc count-freq-100000.c
+]0;fjsn@SSD: ~/directory/5th/prob_stat/count-freq[01;32mfjsn@SSD[00m:[01;34m~/directory/5th/prob_stat/count-freq[00m$ ./a.out
+     0 -  5000 : 5043
+  5000 - 10000 : 5069
+ 10000 - 15000 : 4895
+ 15000 - 20000 : 4930
+ 20000 - 25000 : 4997
+ 25000 - 30000 : 5011
+ 30000 - 35000 : 5048
+ 35000 - 40000 : 4952
+ 40000 - 45000 : 5009
+ 45000 - 50000 : 5002
+ 50000 - 55000 : 5004
+ 55000 - 60000 : 5057
+ 60000 - 65000 : 5072
+ 65000 - 70000 : 5046
+ 70000 - 75000 : 4914
+ 75000 - 80000 : 5065
+ 80000 - 85000 : 4937
+ 85000 - 90000 : 4983
+ 90000 - 95000 : 4918
+ 95000 -100000 : 5048
+]0;fjsn@SSD: ~/directory/5th/prob_stat/count-freq[01;32mfjsn@SSD[00m:[01;34m~/directory/5th/prob_stat/count-freq[00m$ gcc count-freq-1000000.c
+]0;fjsn@SSD: ~/directory/5th/prob_stat/count-freq[01;32mfjsn@SSD[00m:[01;34m~/directory/5th/prob_stat/count-freq[00m$ ./a.out
+     0 -  5000 : 49641
+  5000 - 10000 : 50213
+ 10000 - 15000 : 49945
+ 15000 - 20000 : 50153
+ 20000 - 25000 : 49404
+ 25000 - 30000 : 50284
+ 30000 - 35000 : 49644
+ 35000 - 40000 : 49506
+ 40000 - 45000 : 50481
+ 45000 - 50000 : 49564
+ 50000 - 55000 : 50352
+ 55000 - 60000 : 50226
+ 60000 - 65000 : 49920
+ 65000 - 70000 : 50254
+ 70000 - 75000 : 50442
+ 75000 - 80000 : 49861
+ 80000 - 85000 : 49726
+ 85000 - 90000 : 50359
+ 90000 - 95000 : 50222
+ 95000 -100000 : 49803
+]0;fjsn@SSD: ~/directory/5th/prob_stat/count-freq[01;32mfjsn@SSD[00m:[01;34m~/directory/5th/prob_stat/count-freq[00m$ gcc count-freq-2000000.c
+]0;fjsn@SSD: ~/directory/5th/prob_stat/count-freq[01;32mfjsn@SSD[00m:[01;34m~/directory/5th/prob_stat/count-freq[00m$ ./a.out
+     0 -  5000 : 99939
+  5000 - 10000 : 99917
+ 10000 - 15000 : 100207
+ 15000 - 20000 : 99556
+ 20000 - 25000 : 99952
+ 25000 - 30000 : 100034
+ 30000 - 35000 : 99459
+ 35000 - 40000 : 100304
+ 40000 - 45000 : 100068
+ 45000 - 50000 : 100149
+ 50000 - 55000 : 99897
+ 55000 - 60000 : 100278
+ 60000 - 65000 : 100311
+ 65000 - 70000 : 99773
+ 70000 - 75000 : 99717
+ 75000 - 80000 : 99811
+ 80000 - 85000 : 100524
+ 85000 - 90000 : 99762
+ 90000 - 95000 : 100226
+ 95000 -100000 : 100116
+]0;fjsn@SSD: ~/directory/5th/prob_stat/count-freq[01;32mfjsn@SSD[00m:[01;34m~/directory/5th/prob_stat/count-freq[00m$ gcc count-freq-3000000.c
+]0;fjsn@SSD: ~/directory/5th/prob_stat/count-freq[01;32mfjsn@SSD[00m:[01;34m~/directory/5th/prob_stat/count-freq[00m$ ./a.out
+     0 -  5000 : 150640
+  5000 - 10000 : 149984
+ 10000 - 15000 : 150062
+ 15000 - 20000 : 149524
+ 20000 - 25000 : 150162
+ 25000 - 30000 : 149924
+ 30000 - 35000 : 150373
+ 35000 - 40000 : 149876
+ 40000 - 45000 : 150380
+ 45000 - 50000 : 150478
+ 50000 - 55000 : 149686
+ 55000 - 60000 : 149840
+ 60000 - 65000 : 149785
+ 65000 - 70000 : 150023
+ 70000 - 75000 : 149487
+ 75000 - 80000 : 149696
+ 80000 - 85000 : 150484
+ 85000 - 90000 : 149574
+ 90000 - 95000 : 150422
+ 95000 -100000 : 149600
+]0;fjsn@SSD: ~/directory/5th/prob_stat/count-freq[01;32mfjsn@SSD[00m:[01;34m~/directory/5th/prob_stat/count-freq[00m$ gcc count-freq-4000000.c
+]0;fjsn@SSD: ~/directory/5th/prob_stat/count-freq[01;32mfjsn@SSD[00m:[01;34m~/directory/5th/prob_stat/count-freq[00m$ ./a.out
+     0 -  5000 : 199478
+  5000 - 10000 : 199575
+ 10000 - 15000 : 200715
+ 15000 - 20000 : 199907
+ 20000 - 25000 : 199812
+ 25000 - 30000 : 199416
+ 30000 - 35000 : 200209
+ 35000 - 40000 : 199276
+ 40000 - 45000 : 199649
+ 45000 - 50000 : 200227
+ 50000 - 55000 : 199923
+ 55000 - 60000 : 200549
+ 60000 - 65000 : 200814
+ 65000 - 70000 : 199492
+ 70000 - 75000 : 200705
+ 75000 - 80000 : 200215
+ 80000 - 85000 : 200641
+ 85000 - 90000 : 199927
+ 90000 - 95000 : 199933
+ 95000 -100000 : 199537
+]0;fjsn@SSD: ~/directory/5th/prob_stat/count-freq[01;32mfjsn@SSD[00m:[01;34m~/directory/5th/prob_stat/count-freq[00m$ gcc count-freq-5000000.c
+]0;fjsn@SSD: ~/directory/5th/prob_stat/count-freq[01;32mfjsn@SSD[00m:[01;34m~/directory/5th/prob_stat/count-freq[00m$ ./a.out
+     0 -  5000 : 250553
+  5000 - 10000 : 250108
+ 10000 - 15000 : 250472
+ 15000 - 20000 : 249702
+ 20000 - 25000 : 250064
+ 25000 - 30000 : 249705
+ 30000 - 35000 : 250299
+ 35000 - 40000 : 250841
+ 40000 - 45000 : 250083
+ 45000 - 50000 : 249655
+ 50000 - 55000 : 250154
+ 55000 - 60000 : 249816
+ 60000 - 65000 : 249260
+ 65000 - 70000 : 250431
+ 70000 - 75000 : 249990
+ 75000 - 80000 : 249343
+ 80000 - 85000 : 249559
+ 85000 - 90000 : 249889
+ 90000 - 95000 : 250129
+ 95000 -100000 : 249947
+]0;fjsn@SSD: ~/directory/5th/prob_stat/count-freq[01;32mfjsn@SSD[00m:[01;34m~/directory/5th/prob_stat/count-freq[00m$ exit
+exit
+
+Script done on 2022-06-29 11:48:25+09:00 [COMMAND_EXIT_CODE="0"]
