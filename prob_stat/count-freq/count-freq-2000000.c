@@ -27,4 +27,3 @@ int main() {
         printf("%6d -%6d : %d\n", i, i+5000, count(A, i, i+5000));
     return 0;   
 }
-    
