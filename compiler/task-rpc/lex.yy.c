@@ -354,8 +354,8 @@ static void yynoreturn yy_fatal_error ( const char* msg  );
 	(yy_hold_char) = *yy_cp; \
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
-#define YY_NUM_RULES 17
-#define YY_END_OF_BUFFER 18
+#define YY_NUM_RULES 18
+#define YY_END_OF_BUFFER 19
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -363,11 +363,11 @@ struct yy_trans_info
 	flex_int32_t yy_verify;
 	flex_int32_t yy_nxt;
 	};
-static const flex_int16_t yy_accept[26] =
+static const flex_int16_t yy_accept[29] =
     {   0,
-        0,    0,   18,   16,    1,    2,    6,    4,    5,    7,
-        3,   14,   10,   11,    9,   15,   13,   12,   16,    1,
-        8,    3,    3,    3,    0
+        0,    0,   19,   17,    1,    2,    7,    5,    6,   17,
+        8,    3,   15,   11,   12,   10,   16,   14,   13,   17,
+        1,    9,   17,    3,    4,    3,    3,    0
     } ;
 
 static const YY_CHAR yy_ec[256] =
@@ -408,36 +408,36 @@ static const YY_CHAR yy_meta[17] =
         1,    1,    1,    1,    1,    1
     } ;
 
-static const flex_int16_t yy_base[27] =
+static const flex_int16_t yy_base[30] =
     {   0,
-        0,    0,   28,    0,   25,   29,    0,   20,   16,    0,
-       10,    0,    0,    0,    0,    0,    0,    0,    0,   22,
-        0,   11,   14,   13,   29,   20
+        0,    0,   32,    0,   29,   33,    0,   24,   10,   20,
+        0,   11,    0,    0,    0,    0,    0,    0,    0,    0,
+       26,    0,   18,   14,   17,   16,   15,   33,   21
     } ;
 
-static const flex_int16_t yy_def[27] =
+static const flex_int16_t yy_def[30] =
     {   0,
-       25,    1,   25,   26,   25,   25,   26,   26,   26,   26,
-       26,   26,   26,   26,   26,   26,   26,   26,   26,   25,
-       26,   26,   26,   26,    0,   25
+       28,    1,   28,   29,   28,   28,   29,   29,   29,   29,
+       29,   29,   29,   29,   29,   29,   29,   29,   29,   29,
+       28,   29,   29,   29,   29,   29,   29,    0,   28
     } ;
 
-static const flex_int16_t yy_nxt[46] =
+static const flex_int16_t yy_nxt[50] =
     {   0,
-        4,    5,    6,    7,    8,    9,    4,   10,   11,   12,
-       13,   14,   15,   16,   17,   18,   23,   23,   22,   22,
-       19,   24,   24,   20,   22,   21,   20,   25,    3,   25,
-       25,   25,   25,   25,   25,   25,   25,   25,   25,   25,
-       25,   25,   25,   25,   25
+        4,    5,    6,    7,    8,    9,   10,   11,   12,   13,
+       14,   15,   16,   17,   18,   19,   23,   26,   24,   24,
+       26,   20,   24,   27,   27,   25,   25,   21,   25,   22,
+       21,   28,    3,   28,   28,   28,   28,   28,   28,   28,
+       28,   28,   28,   28,   28,   28,   28,   28,   28
     } ;
 
-static const flex_int16_t yy_chk[46] =
+static const flex_int16_t yy_chk[50] =
     {   0,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,   11,   22,   11,   22,
-       26,   24,   23,   20,    9,    8,    5,    3,   25,   25,
-       25,   25,   25,   25,   25,   25,   25,   25,   25,   25,
-       25,   25,   25,   25,   25
+        1,    1,    1,    1,    1,    1,    9,   12,    9,   12,
+       24,   29,   24,   27,   26,   25,   23,   21,   10,    8,
+        5,    3,   28,   28,   28,   28,   28,   28,   28,   28,
+       28,   28,   28,   28,   28,   28,   28,   28,   28
     } ;
 
 static yy_state_type yy_last_accepting_state;
@@ -454,16 +454,16 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "rpc.l"
-/* 逆ポーランド計算機 */
-#line 3 "rpc.l"
+#line 1 "rpc-2.l"
+/* ???????????? */
+#line 3 "rpc-2.l"
 #include <stdio.h>
 #define STACKSIZE  256
 
-double S[STACKSIZE], x;         /* スタックと一時退避領域 */
-int P = -1;                     /* スタックポインタ */
+double S[STACKSIZE], x;         /* ?????å??????????ΰ? */
+int P = -1;                     /* ?????å?????? */
 
-void printStack();              /* スタックの内容を表示する関数 */
+void printStack();              /* ?????å????????????????? */
 #line 468 "lex.yy.c"
 #line 469 "lex.yy.c"
 
@@ -682,7 +682,7 @@ YY_DECL
 		}
 
 	{
-#line 15 "rpc.l"
+#line 15 "rpc-2.l"
 
 #line 688 "lex.yy.c"
 
@@ -711,13 +711,13 @@ yy_match:
 			while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 				{
 				yy_current_state = (int) yy_def[yy_current_state];
-				if ( yy_current_state >= 26 )
+				if ( yy_current_state >= 29 )
 					yy_c = yy_meta[yy_c];
 				}
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
 			++yy_cp;
 			}
-		while ( yy_base[yy_current_state] != 29 );
+		while ( yy_base[yy_current_state] != 33 );
 
 yy_find_action:
 		yy_act = yy_accept[yy_current_state];
@@ -743,91 +743,96 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 16 "rpc.l"
+#line 16 "rpc-2.l"
 { /* ignored */ }
 	YY_BREAK
 case 2:
 /* rule 2 can match eol */
 YY_RULE_SETUP
-#line 17 "rpc.l"
+#line 17 "rpc-2.l"
 { printStack(); }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 18 "rpc.l"
+#line 18 "rpc-2.l"
 { sscanf(yytext, "%lf", &S[++P]); }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 19 "rpc.l"
-{ if (P>0) { S[P-1] += S[P]; --P; } }
+#line 19 "rpc-2.l"
+{ sscanf(yytext, "%lf", &S[++P]); }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 20 "rpc.l"
-{ if (P>0) { S[P-1] -= S[P]; --P; } }
+#line 20 "rpc-2.l"
+{ if (P>0) { S[P-1] += S[P]; --P; } }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 21 "rpc.l"
-{ if (P>0) { S[P-1] *= S[P]; --P; } }
+#line 21 "rpc-2.l"
+{ if (P>0) { S[P-1] -= S[P]; --P; } }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 22 "rpc.l"
-{ if (P>0) { S[P-1] /= S[P]; --P; } }
+#line 22 "rpc-2.l"
+{ if (P>0) { S[P-1] *= S[P]; --P; } }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 23 "rpc.l"
-{ if (P>-1) S[P] = -S[P]; }
+#line 23 "rpc-2.l"
+{ if (P>0) { S[P-1] /= S[P]; --P; } }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 24 "rpc.l"
-{ if (P>-1) --P; }
+#line 24 "rpc-2.l"
+{ if (P>-1) S[P] = -S[P]; }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 25 "rpc.l"
-{ if (P>-1) { ++P; S[P] = S[P-1]; } }
+#line 25 "rpc-2.l"
+{ if (P>-1) --P; }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 26 "rpc.l"
-{ if (P>0) { ++P; S[P] = S[P-2]; } }
+#line 26 "rpc-2.l"
+{ if (P>-1) { ++P; S[P] = S[P-1]; } }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 27 "rpc.l"
-{ if (P>0) { x=S[P-1]; S[P-1]=S[P]; S[P]=x; } }
+#line 27 "rpc-2.l"
+{ if (P>0) { ++P; S[P] = S[P-2]; } }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 28 "rpc.l"
-{ if (P>1) { x=S[P-2]; S[P-2]=S[P-1]; S[P-1]=S[P]; S[P]=x; } }
+#line 28 "rpc-2.l"
+{ if (P>0) { x=S[P-1]; S[P-1]=S[P]; S[P]=x; } }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 29 "rpc.l"
-{ P=-1; }
+#line 29 "rpc-2.l"
+{ if (P>1) { x=S[P-2]; S[P-2]=S[P-1]; S[P-1]=S[P]; S[P]=x; } }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 30 "rpc.l"
-{ return; }
+#line 30 "rpc-2.l"
+{ P=-1; }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 31 "rpc.l"
-{ fprintf(stderr, "unknown token (%s)\n", yytext); }
+#line 31 "rpc-2.l"
+{ return; }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 32 "rpc.l"
+#line 32 "rpc-2.l"
+{ fprintf(stderr, "unknown token (%s)\n", yytext); }
+	YY_BREAK
+case 18:
+YY_RULE_SETUP
+#line 33 "rpc-2.l"
 ECHO;
 	YY_BREAK
-#line 831 "lex.yy.c"
+#line 836 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1124,7 +1129,7 @@ static int yy_get_next_buffer (void)
 		while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 			{
 			yy_current_state = (int) yy_def[yy_current_state];
-			if ( yy_current_state >= 26 )
+			if ( yy_current_state >= 29 )
 				yy_c = yy_meta[yy_c];
 			}
 		yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
@@ -1152,11 +1157,11 @@ static int yy_get_next_buffer (void)
 	while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 		{
 		yy_current_state = (int) yy_def[yy_current_state];
-		if ( yy_current_state >= 26 )
+		if ( yy_current_state >= 29 )
 			yy_c = yy_meta[yy_c];
 		}
 	yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
-	yy_is_jam = (yy_current_state == 25);
+	yy_is_jam = (yy_current_state == 28);
 
 		return yy_is_jam ? 0 : yy_current_state;
 }
@@ -1832,7 +1837,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 32 "rpc.l"
+#line 33 "rpc-2.l"
 
 
 main() {
