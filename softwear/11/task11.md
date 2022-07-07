@@ -9,3 +9,5 @@
 |            | HDLc             | Y   | Y   | N   | N   | Y   | Y   | N   | N   | Y   | Y   | N   | N   | Y   | Y   | N   | N   |
 |            | 血糖             | Y   | N   | Y   | N   | Y   | N   | Y   | N   | Y   | N   | Y   | N   | Y   | N   | Y   | N   |
 | アクション | メタボリック判定 | Y   | Y   | Y   | Y   | Y   | Y   | Y   | N   | Y   | Y   | Y   | N   | Y   | N   | N   | N   |
+
+## task11-2
