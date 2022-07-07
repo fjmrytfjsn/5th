@@ -50,12 +50,14 @@ extern int yydebug;
   enum yytokentype
   {
     NUM = 258,
-    UMINUS = 259
+    VAR = 259,
+    UMINUS = 260
   };
 #endif
 /* Tokens.  */
 #define NUM 258
-#define UMINUS 259
+#define VAR 259
+#define UMINUS 260
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED

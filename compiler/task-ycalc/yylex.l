@@ -1,9 +1,9 @@
 %{
 #include "y.tab.h"	/* この中で NUM が定義されている．	*/
 
-extern int yylval;	/* ycalc.y (y.tab.c) で定義される変数．	*/
-			/* トークンの「値」を代入して，呼出し側	*/
-			/* (ycalc.y (y.tab.c)) に引き渡す．	*/
+// extern int yylval;	/* ycalc.y (y.tab.c) で定義される変数．	*/
+// 			/* トークンの「値」を代入して，呼出し側	*/
+// 			/* (ycalc.y (y.tab.c)) に引き渡す．	*/
 %}
 
 %option noyywrap
@@ -19,13 +19,13 @@ extern int yylval;	/* ycalc.y (y.tab.c) で定義される変数．	*/
     /* その値を yylval に代入して呼出し側に渡す．	*/
     sscanf(yytext, "%d", &yylval); return NUM;
 }
-[-+*/()\n$A-Za-z] { 
+[-+*/()\n$=] { 
     /* 演算子と括弧と改行文字は，1文字ずつ，	*/
     /* その文字コードそのものを戻り値とする．	*/
     return yytext[0];
 }
-[=] {
-    return ASSIGN;
+[A-Za-z] {
+    return VAR;
 }
 . { 
     /* その他の文字はエラーとして読み飛ばす．	*/
