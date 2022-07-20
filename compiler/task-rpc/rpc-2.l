@@ -5,25 +5,28 @@
 #include <stdlib.h>
 #define STACKSIZE  256
 
-double S[STACKSIZE], x;         /* ?????���??????????���? */
-int P = -1;                     /* ?????���?????? */
+double S[STACKSIZE], x;
+int P = -1;
+
+// 変数用の構造体
 struct stab {
+    char name;
     double val;
-    char name[10];
 } stab[100];
 int count=0;
 
-void printStack();              /* ?????���????????????????? */
+void printStack();
+void assignment(char name, double val);
+void push(char name);
 void listing();
 %}
 
 %option noyywrap
 DIGIT	[0-9]
-ALPHA   [A-Z]
 
 %%
 [ \t\r]+        { /* ignored */ }
-\n              { printStack(); }
+\n              { printStack();}
 "-"?{DIGIT}+("."{DIGIT}*)?      { sscanf(yytext, "%lf", &S[++P]); }
 "-"?"."{DIGIT}+ { sscanf(yytext, "%lf", &S[++P]); }
 "+"             { if (P>0) { S[P-1] += S[P]; --P; } }
@@ -38,8 +41,8 @@ ALPHA   [A-Z]
                   puts("r スタック冒頭の３要素を順に入れ替える．(Rotate)");
                   puts("c スタックを全てクリアして，空にする．(Clear)");
                   puts("q プログラムを終了する．(Quit)"); }
-{ALPHA}=        { printf("%s\n", yytext[0]);}
-{ALPHA}         { printf("%f\n", stab[yytext[0]].val); }
+[A-Z]("=")      { if (P>-1) { assignment(yytext[0], S[P]); } }
+[A-Z]           { push(yytext[0]); }
 v               { listing(); }
 p               { if (P>-1) --P; }
 d               { if (P>-1) { ++P; S[P] = S[P-1]; } }
@@ -59,12 +62,39 @@ main() {
 
 void printStack() {
     int i;
-    for(i=0; i<=P; i++) printf("%.8g ", S[i]);
+    for(i=0; i<=P; i++)
+        printf("%.8g ", S[i]);
     printf("> ");
 }
 
+// 変数への値の代入
+void assignment(char name, double val) {
+    int i;
+    for(i=0;i<count;i++) { 
+        if(stab[i].name==name) {
+            stab[i].val = val;
+            return;
+        }
+    }
+    stab[count].name = name;
+    stab[count++].val = val;
+}
+
+// 変数の値をスタックの先頭へプッシュ
+void push(char name) {
+    int i;
+    for(i=0;i<count;i++) {
+        if(stab[i].name==name) {
+            S[++P] = stab[i].val;
+            return;
+        }
+    }
+}
+
+
+// 変数とその値を列挙
 void listing() {
     int i;
     for(i=0;i<count; i++)
-        printf("%s = %f\n", stab[i].name, stab[i].val);
+        printf("%c = %f\n", stab[i].name, stab[i].val);
 }

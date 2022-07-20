@@ -470,15 +470,18 @@ char *yytext;
 double S[STACKSIZE], x;         /* ?????���??????????���? */
 int P = -1;                     /* ?????���?????? */
 struct stab {
+    char name;
     double val;
-    char name[10];
 } stab[100];
 int count=0;
+// char text;
 
 void printStack();              /* ?????���????????????????? */
+void assignment(char name, double val);
+void push(char name);
 void listing();
-#line 481 "lex.yy.c"
-#line 482 "lex.yy.c"
+#line 484 "lex.yy.c"
+#line 485 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -695,9 +698,9 @@ YY_DECL
 		}
 
 	{
-#line 24 "rpc-2.l"
+#line 26 "rpc-2.l"
 
-#line 701 "lex.yy.c"
+#line 704 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -756,53 +759,53 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 25 "rpc-2.l"
+#line 27 "rpc-2.l"
 { /* ignored */ }
 	YY_BREAK
 case 2:
 /* rule 2 can match eol */
 YY_RULE_SETUP
-#line 26 "rpc-2.l"
-{ printStack(); }
+#line 28 "rpc-2.l"
+{ printStack();}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 27 "rpc-2.l"
+#line 29 "rpc-2.l"
 { sscanf(yytext, "%lf", &S[++P]); }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 28 "rpc-2.l"
+#line 30 "rpc-2.l"
 { sscanf(yytext, "%lf", &S[++P]); }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 29 "rpc-2.l"
+#line 31 "rpc-2.l"
 { if (P>0) { S[P-1] += S[P]; --P; } }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 30 "rpc-2.l"
+#line 32 "rpc-2.l"
 { if (P>0) { S[P-1] -= S[P]; --P; } }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 31 "rpc-2.l"
+#line 33 "rpc-2.l"
 { if (P>0) { S[P-1] *= S[P]; --P; } }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 32 "rpc-2.l"
+#line 34 "rpc-2.l"
 { if (P>0) { S[P-1] /= S[P]; --P; } }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 33 "rpc-2.l"
+#line 35 "rpc-2.l"
 { if (P>-1) S[P] = -S[P]; }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 34 "rpc-2.l"
+#line 36 "rpc-2.l"
 { puts("p スタックの先頭を除去する．(droP or Pop)");
                   puts("d スタックの先頭を複製する．(Dupricate)");
                   puts("o スタックの２番目の要素を複製する．(Over)");
@@ -813,65 +816,65 @@ YY_RULE_SETUP
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 41 "rpc-2.l"
-{ printf("%s\n", yytext[0]);}
+#line 43 "rpc-2.l"
+{ if (P>-1) { assignment(yytext[0], S[P]); } }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 42 "rpc-2.l"
-{ printf("%f\n", stab[yytext[0]].val); }
+#line 44 "rpc-2.l"
+{ push(yytext[0]); }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 43 "rpc-2.l"
+#line 45 "rpc-2.l"
 { listing(); }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 44 "rpc-2.l"
+#line 46 "rpc-2.l"
 { if (P>-1) --P; }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 45 "rpc-2.l"
+#line 47 "rpc-2.l"
 { if (P>-1) { ++P; S[P] = S[P-1]; } }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 46 "rpc-2.l"
+#line 48 "rpc-2.l"
 { if (P>0) { ++P; S[P] = S[P-2]; } }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 47 "rpc-2.l"
+#line 49 "rpc-2.l"
 { if (P>0) { x=S[P-1]; S[P-1]=S[P]; S[P]=x; } }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 48 "rpc-2.l"
+#line 50 "rpc-2.l"
 { if (P>1) { x=S[P-2]; S[P-2]=S[P-1]; S[P-1]=S[P]; S[P]=x; } }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 49 "rpc-2.l"
+#line 51 "rpc-2.l"
 { P=-1; }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 50 "rpc-2.l"
+#line 52 "rpc-2.l"
 { return; }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 51 "rpc-2.l"
+#line 53 "rpc-2.l"
 { fprintf(stderr, "unknown token (%s)\n", yytext); }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 52 "rpc-2.l"
+#line 54 "rpc-2.l"
 ECHO;
 	YY_BREAK
-#line 875 "lex.yy.c"
+#line 878 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1876,7 +1879,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 52 "rpc-2.l"
+#line 54 "rpc-2.l"
 
 
 main() {
@@ -1887,13 +1890,36 @@ main() {
 
 void printStack() {
     int i;
-    for(i=0; i<=P; i++) printf("%.8g ", S[i]);
+    for(i=0; i<=P; i++)
+        printf("%.8g ", S[i]);
     printf("> ");
+}
+
+void assignment(char name, double val) {
+    int i;
+    for(i=0;i<count;i++) { 
+        if(stab[i].name==name) {
+            stab[i].val = val;
+            return;
+        }
+    }
+    stab[count].name = name;
+    stab[count++].val = val;
+}
+
+void push(char name) {
+    int i;
+    for(i=0;i<count;i++) {
+        if(stab[i].name==name) {
+            S[++P] = stab[i].val;
+            return;
+        }
+    }
 }
 
 void listing() {
     int i;
     for(i=0;i<count; i++)
-        printf("%s = %f\n", stab[i].name, stab[i].val);
+        printf("%c = %f\n", stab[i].name, stab[i].val);
 }
 
