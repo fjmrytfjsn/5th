@@ -1,4 +1,8 @@
-/* ???????????? */
+# 課題3
+
+## ソースコード
+
+```lang-ja
 %{
 #include <stdio.h>
 #include <string.h>
@@ -22,7 +26,7 @@ void listing();
 %}
 
 %option noyywrap
-DIGIT	[0-9]
+DIGIT   [0-9]
 
 %%
 [ \t\r]+        { /* ignored */ }
@@ -98,3 +102,13 @@ void listing() {
     for(i=0;i<count; i++)
         printf("%c = %f\n", stab[i].name, stab[i].val);
 }
+
+```
+
+## 説明
+
+変数機能を構造体を用いて実装した。
+
+スタックの先頭へのプッシュと変数の列挙の機能を追加した。
+
+今回は変数名は大文字アルファベット一文字のみに限ったが、char型で変数名を定義しているところをchar*などにすればその他の変数名でも使用できると思う。
