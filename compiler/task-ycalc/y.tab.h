@@ -50,18 +50,30 @@ extern int yydebug;
   enum yytokentype
   {
     NUM = 258,
-    VAR = 259,
-    UMINUS = 260
+    NAME = 259,
+    LIST = 260,
+    UMINUS = 261
   };
 #endif
 /* Tokens.  */
 #define NUM 258
-#define VAR 259
-#define UMINUS 260
+#define NAME 259
+#define LIST 260
+#define UMINUS 261
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef int YYSTYPE;
+union YYSTYPE
+{
+#line 7 "ycalc.y"
+
+    int varnum;
+    double dval;
+
+#line 74 "y.tab.h"
+
+};
+typedef union YYSTYPE YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1
 #endif
