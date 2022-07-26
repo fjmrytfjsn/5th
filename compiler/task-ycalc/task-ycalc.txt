@@ -1,0 +1,25 @@
+Script started on 2022-07-26 13:49:17+09:00 [TERM="xterm-256color" TTY="/dev/pts/2" COLUMNS="98" LINES="49"]
+]0;fjsn@SSD: ~/directory/5th/compiler/task-ycalc[01;32mfjsn@SSD[00m:[01;34m~/directory/5th/compiler/task-ycalc[00m$ ./ycalc
+> 1+2*3/4
+2.500000
+> a=$
+2.500000
+> b=$*$+4
+10.250000
+> a/b
+0.243902
+> list
+a = 2.500000
+b = 10.250000
+4.000000
+> clear
+4.000000
+> list
+4.000000
+> a+b
+0.000000
+> > > quit
+]0;fjsn@SSD: ~/directory/5th/compiler/task-ycalc[01;32mfjsn@SSD[00m:[01;34m~/directory/5th/compiler/task-ycalc[00m$ exit
+exit
+
+Script done on 2022-07-26 13:51:14+09:00 [COMMAND_EXIT_CODE="0"]

@@ -52,25 +52,27 @@ extern int yydebug;
     NUM = 258,
     NAME = 259,
     LIST = 260,
-    UMINUS = 261
+    CLEAR = 261,
+    UMINUS = 262
   };
 #endif
 /* Tokens.  */
 #define NUM 258
 #define NAME 259
 #define LIST 260
-#define UMINUS 261
+#define CLEAR 261
+#define UMINUS 262
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 7 "ycalc.y"
+#line 42 "ycalc.y"
 
-    int varnum;
+    char varname;
     double dval;
 
-#line 74 "y.tab.h"
+#line 76 "y.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

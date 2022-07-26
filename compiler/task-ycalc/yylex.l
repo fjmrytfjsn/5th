@@ -22,11 +22,17 @@ DIGIT	[0-9]
     return yytext[0];
 }
 [A-Za-z] {
-    yylval.dval = yytext[0] - 'A';
+    yylval.varname = yytext[0];
     return NAME;
 }
 "list" {
     return LIST;
+}
+"clear" {
+    return CLEAR;
+}
+"quit" {
+    exit(0);
 }
 . {
 	fprintf(stderr, "'%s' is ignored.\n", yytext);
