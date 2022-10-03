@@ -1,0 +1,142 @@
+\usepackage[utf8]{inputenc}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage[top=25truemm, bottom=25truemm, left=20truemm, right=20truemm]{geometry}
+\usepackage{okumacro}
+\usepackage{amsmath, amssymb}
+\usepackage{enumerate}
+\usepackage{siunitx}
+\usepackage{url}
+\usepackage{pdfpages}
+\usepackage{here}
+\usepackage{diagbox}
+\usepackage{slashbox}
+
+\setcounter{secnumdepth}{6}
+\setlength\textfloatsep{2truemm}
+
+%---------------------------------------------------------------------
+
+% \fontsize{11ptj}{16ptj}\selectfont
+\setlength{\baselineskip}{16pt}
+\setlength{\columnsep}{5mm}
+
+%---------------------------------------------------------------------
+
+%表
+\usepackage{tabularx}
+   \newcolumntype{C}{>{\centering\arraybackslash}X}
+   \newcolumntype{L}{>{\raggedright\arraybackslash}X}
+   \newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+
+%---------------------------------------------------------------------
+
+\usepackage{listings,jvlisting}
+\lstset{
+    basicstyle={\ttfamily},
+    identifierstyle={\small},
+    commentstyle={\smallitshape},
+    keywordstyle={\small\bfseries},
+    ndkeywordstyle={\small},
+    stringstyle={\small\ttfamily},
+    frame={tb},
+    tabsize=4,
+    breaklines=true,
+    columns=[l]{fullflexible},
+    numbers=left,
+    xrightmargin=0zw,
+    xleftmargin=3zw,
+    numberstyle={\scriptsize},
+    stepnumber=1,
+    numbersep=1zw,
+    lineskip=-0.5ex
+}
+\newcommand{\prog}[3]{
+    \lstinputlisting[label=code:#1, caption=#2]{figures/#3}
+}
+\renewcommand{\lstlistingname}{コード}
+
+%---------------------------------------------------------------------
+\makeatletter
+\def\Hline{
+    \noalign{\ifnum0=`}\fi\hrule \@height 2pt \futurelet
+    \reserved@a\@xhline
+}
+\makeatother
+
+%キャプション(番号無し)
+\newcommand{\subcaption}[1]{
+    #1 \\
+    \vskip\baselineskip
+}
+
+%表の空欄
+\newcommand{\blank}{\textbf{---}}
+
+%数式(番号付き)
+\newcommand{\eq}[1]{
+    \begin{eqnarray}
+        #1
+    \end{eqnarray}
+}
+%数式(番号無し)
+\newcommand{\EQ}[1]{
+    \begin{eqnarray*}
+        #1
+    \end{eqnarray*}
+}
+
+%一階微分
+\newcommand{\diff}[2]{\frac{d #1}{d #2}}
+%二階微分
+\newcommand{\DIFF}[2]{\frac{d^2 #1}{d {#2}^2}}
+
+%図(1つ)
+\newcommand{\fig}[4][0.9]{
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=#1\linewidth]{figures/#2}
+        \caption{#3}
+        \label{fig:#4}
+    \end{figure}
+}
+%図(2つ)
+\newcommand{\subfig}[6]{
+    \begin{figure}[H]
+        \centering
+        \begin{minipage}{0.45\linewidth}
+            \centering
+            \includegraphics[width=\linewidth]{figures/#1}
+            \caption{#2}
+            \label{fig:#3}
+        \end{minipage}
+        \begin{minipage}{0.45\linewidth}
+            \centering
+            \includegraphics[width=\linewidth]{figures/#4}
+            \caption{#5}
+            \label{fig:#6}
+        \end{minipage}
+    \end{figure}
+}
+%図(3つ)
+\newcommand{\thirdfig}[9]{
+    \begin{figure}[H]
+        \begin{minipage}{0.3\linewidth}
+            \centering
+            \includegraphics[width=\linewidth]{figures/#1}
+            \caption{#2}
+            \label{fig:#3}
+        \end{minipage}
+        \begin{minipage}{0.3\linewidth}
+            \centering
+            \includegraphics[width=\linewidth]{figures/#4}
+            \caption{#5}
+            \label{fig:#6}
+        \end{minipage}
+        \begin{minipage}{0.3\linewidth}
+            \centering
+            \includegraphics[width=\linewidth]{figures/#7}
+            \caption{#8}
+            \label{fig:#9}
+        \end{minipage}
+    \end{figure}
+}

@@ -1,0 +1,124 @@
+\documentclass[dvipdfmx, twocolumn, 11pt]{jsarticle}
+
+\input{macro}
+\pagestyle{empty}
+
+
+\begin{document} 
+
+\twocolumn[
+    \centering
+    {\LARGE \textbf{グラフを表すデータ構造について}} \\ 
+    \vspace{1zw}
+    {\large E1832 藤村勇仁 \hspace{3zw} 指導教員 濱田幸弘} \\
+    \vspace{2zw}
+]
+
+\section{はじめに}
+    課題研究では、グラフ理論について輪講を通して学んだ。
+    本稿では、グラフを行列やリストといったデータ構造を用いて表現する方法についてまとめる。
+
+\section{グラフ}
+    \subsection{無向グラフ}
+        無向グラフ(あるいは単にグラフという)$G$は頂点の空でない有限集合$V(G)$(頂点集合)と、$V(G)$の二要素部分集合である辺の集合$E(G)$(辺集合)のことである。また、頂点の数を位数、辺の数をサイズといい、位数$p$、サイズ$q$のグラフを$(p,q)$グラフという。
+        $e = uv$がグラフ$G$の辺であるとき、$u$と$v$は隣接していると言う。
+        無向グラフの例を図\ref{fig:graphs}(a)に示す。
+
+    \subsection{有向グラフ}
+        有向グラフ$D$は頂点の空でない有限集合$V(D)$(頂点集合)と、異なる頂点の順序対の集合$E(D)$のことである。$E(D)$の要素は有向辺とか弧と呼ばれる。。また、頂点数を位数、有向辺の数をサイズといい、位数$p$、サイズ$q$のグラフを$(p,q)$有向グラフという。
+        $(u, v)$が$D$の有向辺であるとき、$u$は$v$へ隣接していると言い、$v$は$u$から隣接しているという。
+        有向グラフの例を図\ref{fig:graphs}(b)に示す。
+
+    \fig[0.95]{graph.pdf}{グラフの例}{graphs}
+    
+    \subsection{道}
+        $(v_{i-1}, v_i) \in E$を満たす頂点の列$P = \langle v_0, v_1, \cdots, v_n \rangle$を道といい、$n$を$P$の長さという。$v_0$を$P$の始点, $v_n$を$P$の終点といい、$v_0 = v_n$のとき$P$は閉路という。
+
+    \subsection{独立全域木}
+        どの2頂点間にも道が存在し、閉路を含まないグラフを木という。
+        グラフのすべての頂点を含み木である部分グラフを全域木という。また、グラフの同じ頂点を根とする２つの全域木を考えたときに根とすべての頂点間で道が始点と終点以外で同じ頂点を通らないとき、それらは独立全域木である。
+
+
+
+\section{データ構造}
+    データの集まりとそれらのデータ間の結合関係を表現したものをデータ構造という。
+
+    \subsection{リスト}
+        要素を0個以上1列に並べたものを列という。また、列を表すデータ構造で、列の中での前後関係をポインタによって示す形式の動的なものをリストという。
+        図\ref{fig:list}にリストの図表現を示す。
+
+        \fig[0.95]{list.pdf}{リストの図表現}{list}
+    
+    \subsection{スタック}
+        列を表すデータ構造で、データの挿入と削除を列の一方の端だけで行うように制限したものをスタックという。
+        挿入、削除、参照を行う端をスタックの先頭(top)、反対側の端を底(bottom)という。
+        後入れ先出し(LIFO)の性質を持っている。
+
+    \subsection{キュー}
+        列を表すデータ構造で、列の一方の端で挿入だけを行い、他方の端で削除を行うように制限したものをキューという。
+        先入れ先出し(FIFO)の性質を持っている。
+
+
+\section{グラフを表すデータ構造}
+    \subsection{無向グラフ}
+        \subsubsection{隣接行列}
+            $(p, q)$グラフ$G$の隣接行列$A = (a_{ij})$は式(\ref{eq:ad-matrix})によって定義される$p \times p$行列である。
+            \begin{equation}
+                \label{eq:ad-matrix}
+                a_{ij} =
+                \begin{cases}
+                    1 & \text{if $v_i v_j \in E(G)$} \\
+                    0 & \text{otherwise}
+                \end{cases}
+            \end{equation}
+            この行列は対角線上のすべての成分が0である対称行列である。図\ref{fig:graphs-ad}にグラフ$G$とその隣接行列$A$を示す。
+
+            また、この行列は$p^2$の記憶領域を必要とするが、頂点の数に対して辺の数が少ないとき、この隣接行列は多くの要素に0を持つことになる。つまり、非常に多くの記憶領域を無駄にすることになる。
+
+        \subsubsection{隣接リスト}
+            配列のインデクスが頂点を表す。
+            配列の要素をリストとし、各頂点と隣接する頂点をセルに格納する。
+            それぞれのリストはNULLポインタで終わる。
+
+            $(p, q)$グラフ$G$の隣接リストは、$(p + 2q) \times 2$の表$T$で表すことができる。
+            図\ref{fig:graphs-ad}にグラフ$G$の隣接リストとそれを表す表$T$を示す。
+        
+        \fig[0.75]{graphs-ad.pdf}{グラフの隣接行列と隣接リスト}{graphs-ad}
+
+        % \fig{digraphs-ad.pdf}{有向グラフの隣接行列と隣接リスト}{digraphs-ad}
+
+    \subsection{有向グラフ}
+        \subsubsection{隣接行列}
+            $(p, q)$有向グラフ$D$の隣接行列$A = (a_{ij})$も無向グラフと同様に式(\ref{eq:ad-matrix})によって定義される$p \times p$行列である。
+            % 図\ref{fig:digraphs-ad}に有向グラフ$D$の隣接行列$A$を示す。
+
+        \subsubsection{隣接リスト}
+            $(p, q)$有向グラフ$D$の隣接リストは、グラフの隣接リストとほとんど同じだが、$i(1 \leqq i \leqq p)$番目の隣接リストに$v_i$から隣接する頂点がリストされている点だけが異なる。また、有向グラフには自己ループが許されている点も異なる。$(p, q)$有向グラフの隣接リストは$(p + q) \times 2$の表$T$で表すことができる。
+            % 図\ref{fig:digraphs-ad}に有向グラフ$D$とその隣接リスト$T$を示す。
+    
+
+\section{卒業研究}
+    2-コーダルリングは、次のように定義され、$CR(N, d_1, d_2)$と書かれる。
+    \begin{equation*}
+        \begin{split}
+            G &= (V, E) \\
+            V &= \{0, 1, \cdots, N-1\} \\
+            E &= \{(u, v) \mid [v-u]_N = 1 \text{or} [v-u]_N = d_i, \\
+              &\qquad 1 \leqq i \leqq 2, 2 \leqq d_1 < d_2 \leqq N/2\} \\
+              &\text{ここで、}[v-u]_N \text{は} (v-u) \bmod N \text{を示す}
+        \end{split}
+    \end{equation*}
+    図\ref{fig:chordal}に$N = 14, d_1 = 3, d_2 = 7$の2-コーダルリングを示す。
+
+    2-コーダルリングにおいて、6つの全域木を構築するアルゴリズムを考案し、それらが独立であることをプログラムを使い検証することが卒業研究のテーマである。
+    
+    \fig[0.58]{chordal.pdf}{2-コーダルリングの例}{chordal}
+
+
+\bibliographystyle{jplain}
+\bibliography{reference.bib}
+
+\nocite{2006離散数学入門}
+\nocite{chartrand1993applied}
+
+\end{document}
