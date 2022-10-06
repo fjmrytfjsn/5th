@@ -10,6 +10,7 @@
 \usepackage{here}
 \usepackage{diagbox}
 \usepackage{slashbox}
+\usepackage{svg}
 
 \setcounter{secnumdepth}{6}
 \setlength\textfloatsep{2truemm}
@@ -100,7 +101,7 @@
     \end{figure}
 }
 %図(2つ)
-\newcommand{\subfig}[6]{
+\newcommand{\ffig}[6]{
     \begin{figure}[H]
         \centering
         \begin{minipage}{0.45\linewidth}
@@ -118,7 +119,7 @@
     \end{figure}
 }
 %図(3つ)
-\newcommand{\thirdfig}[9]{
+\newcommand{\fffig}[9]{
     \begin{figure}[H]
         \begin{minipage}{0.3\linewidth}
             \centering
@@ -140,3 +141,53 @@
         \end{minipage}
     \end{figure}
 }
+% %svg(1)
+% \newcommand{\svg}[4][0.9]{
+%     \begin{figure}[H]
+%         \centering
+%         \includesvg[width=#1\linewidth]{figures/#2}
+%         \caption{#3}
+%         \label{fig:#4}
+%     \end{figure}
+% }
+% %svg(2)
+% \newcommand{\ssvg}[6]{
+%     \begin{figure}[H]
+%         \centering
+%         \begin{minipage}{0.45\linewidth}
+%             \centering
+%             \includesvg[width=\linewidth]{figures/#1}
+%             \caption{#2}
+%             \label{fig:#3}
+%         \end{minipage}
+%         \begin{minipage}{0.45\linewidth}
+%             \centering
+%             \includesvg[width=\linewidth]{figures/#4}
+%             \caption{#5}
+%             \label{fig:#6}
+%         \end{minipage}
+%     \end{figure}
+% }
+% %svg(3)
+% \newcommand{\sssvg}[9]{
+%     \begin{figure}[H]
+%         \begin{minipage}{0.3\linewidth}
+%             \centering
+%             \includesvg[width=\linewidth]{figures/#1}
+%             \caption{#2}
+%             \label{fig:#3}
+%         \end{minipage}
+%         \begin{minipage}{0.3\linewidth}
+%             \centering
+%             \includesvg[width=\linewidth]{figures/#4}
+%             \caption{#5}
+%             \label{fig:#6}
+%         \end{minipage}
+%         \begin{minipage}{0.3\linewidth}
+%             \centering
+%             \includesvg[width=\linewidth]{figures/#7}
+%             \caption{#8}
+%             \label{fig:#9}
+%         \end{minipage}
+%     \end{figure}
+% }
