@@ -1,0 +1,24 @@
+\begin{thebibliography}{1}
+
+\bibitem{chartrand1993applied}
+G.~Chartrand and O.~R. Oellermann,
+\newblock {\em Applied and Algorithmic Graph Theory},
+\newblock McGraw-Hill, 1993.
+
+\bibitem{YukihiroHAMADA2016}
+Yukihiro HAMADA,
+\newblock Independent spanning trees of 2-chordal rings,
+\newblock {\em IEICE Transactions on Fundamentals of Electronics,
+  Communications and Computer Sciences}, Vol. E99.A, No.~1, pp. 355--362, 2016.
+
+\bibitem{Yokooji}
+横大路弘成,
+\newblock ``2-コーダルリング${CR}({N},d_1,d_1+1)$の独立全域木の構築'',
+\newblock 明石工業高等専門学校卒業研究論文, 2021.
+
+\bibitem{2006離散数学入門}
+守屋悦朗,
+\newblock ``離散数学入門'',
+\newblock サイエンス社, 2006.
+
+\end{thebibliography}
