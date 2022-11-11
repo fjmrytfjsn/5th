@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.141592653-p3.9.0-210218-2.6 (utf8.euc) (TeX Live 2021) (preloaded format=platex 2022.7.30)  7 OCT 2022 08:22
+This is e-pTeX, Version 3.141592653-p3.9.0-210218-2.6 (utf8.euc) (TeX Live 2021) (preloaded format=platex 2022.7.30)  14 OCT 2022 06:21
 entering extended mode
  restricted \write18 enabled.
 **main.tex
@@ -538,57 +538,55 @@ LaTeX Font Info:    Font shape `JT1/gt/m/n' will be
 (Font)              scaled to size 11.53198pt on input line 16.
 LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
 (Font)              scaled to size 11.53198pt on input line 16.
+LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
+(Font)              scaled to size 6.72699pt on input line 18.
+LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
+(Font)              scaled to size 4.805pt on input line 18.
 LaTeX Font Info:    Font shape `JT1/gt/m/n' will be
 (Font)              scaled to size 9.60999pt on input line 22.
 LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
 (Font)              scaled to size 9.60999pt on input line 22.
-LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
-(Font)              scaled to size 6.72699pt on input line 23.
-LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
-(Font)              scaled to size 4.805pt on input line 23.
 
-Underfull \hbox (badness 1975) in paragraph at lines 26--27
-[]$\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 v[]; v[]\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 2 \OML/cmm/m/it/10 E$ \JY1/mc/m/n/10 を満たす頂点の列 $\OML/cmm/m/it/10 P \OT1/cmr/m/n/10 =
+Underfull \hbox (badness 3895) in paragraph at lines 27--28
+[]$\OML/cmm/m/it/10 v[]v[] \OMS/cmsy/m/n/10 2 \OML/cmm/m/it/10 E$ \JY1/mc/m/n/10 を満たす頂点の列 $\OML/cmm/m/it/10 P \OT1/cmr/m/n/10 =
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
-(Font)              scaled to size 6.72699pt on input line 49.
+(Font)              scaled to size 6.72699pt on input line 52.
 LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
-(Font)              scaled to size 4.805pt on input line 49.
-File: figures/chordal.pdf Graphic file (type pdf)
-<figures/chordal.pdf>
-LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
-(Font)              scaled to size 8.64899pt on input line 54.
-LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
-(Font)              scaled to size 8.64899pt on input line 54.
-LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
-(Font)              scaled to size 5.76599pt on input line 54.
-File: figures/IST1.pdf Graphic file (type pdf)
-<figures/IST1.pdf>
-File: figures/IST2.pdf Graphic file (type pdf)
-<figures/IST2.pdf>
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
+(Font)              scaled to size 4.805pt on input line 52.
  [1
 
 
 ]
-Underfull \hbox (badness 2970) in paragraph at lines 74--75
+File: figures/list.pdf Graphic file (type pdf)
+<figures/list.pdf>
+LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
+(Font)              scaled to size 8.64899pt on input line 58.
+LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
+(Font)              scaled to size 8.64899pt on input line 58.
+LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
+(Font)              scaled to size 5.76599pt on input line 58.
+File: figures/graph.pdf Graphic file (type pdf)
+<figures/graph.pdf>
+File: figures/graphs-ad.pdf Graphic file (type pdf)
+<figures/graphs-ad.pdf>
+
+Underfull \hbox (badness 2970) in paragraph at lines 78--79
 []\JY1/mc/m/n/10 以下に示す \OT1/cmr/m/n/10 6 \JY1/mc/m/n/10 連結のコ ーダルリング
  []
 
 LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <10> not available
-(Font)              Font shape `JT1/gt/m/n' tried instead on input line 76.
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 80.
 LaTeX Font Info:    Font shape `JT1/gt/m/n' will be
-(Font)              scaled to size 9.60999pt on input line 76.
+(Font)              scaled to size 9.60999pt on input line 80.
 LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <10> not available
-(Font)              Font shape `JY1/gt/m/n' tried instead on input line 76.
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 80.
 LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
-(Font)              scaled to size 9.60999pt on input line 76.
+(Font)              scaled to size 9.60999pt on input line 80.
 (./main.bbl
 LaTeX Font Info:    Font shape `JT1/gt/m/it' in size <10> not available
 (Font)              Font shape `JT1/gt/m/n' tried instead on input line 5.
@@ -600,15 +598,15 @@ LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
 (Font)              scaled to size 9.60999pt on input line 5.
 ) [2] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 12572 strings out of 478739
- 260161 string characters out of 5858778
+ 12571 strings out of 478739
+ 260172 string characters out of 5858778
  600657 words of memory out of 5000000
  30781 multiletter control sequences out of 15000+600000
  486131 words of font info for 105 fonts, out of 8000000 for 9000
  934 hyphenation exceptions out of 8191
- 99i,17n,95p,499b,515s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 99i,17n,95p,352b,515s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on main.dvi (2 pages, 21716 bytes).
+Output written on main.dvi (2 pages, 21140 bytes).
 
 This is pBibTeX, Version 0.99d-j0.33 (utf8.euc) (TeX Live 2021)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
@@ -617,7 +615,7 @@ The style file: jplain.bst
 Database file #1: reference.bib
 You've used 4 entries,
             2622 wiz_defined-function locations,
-            616 strings with 5019 characters,
+            616 strings with 5005 characters,
 and the built_in function-call counts, 1289 in all, are:
 = -- 103
 > -- 33
@@ -740,5 +738,5 @@ dvipdfmx:warning: Unparsed material at end of special ignored.
 
 Current input buffer is -->!  /pgfwritesamplecmyk { 4 index 0 5 index pgfchec...<--
 ][2]
-162078 bytes written
+194164 bytes written
 

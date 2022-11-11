@@ -7,6 +7,8 @@ function simple_mix(file_name_1, file_name_2, ratio, another_name)
 img_1 = imread(file_name_1);
 img_2 = imread(file_name_2);
 
+converted_img = ratio*img_1 + (1-ratio)*img_2;
+
 imwrite(converted_img, another_name);
 
 endfunction
