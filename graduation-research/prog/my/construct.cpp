@@ -7,29 +7,30 @@ vector<vector<int>> edges(0, vector<int>(0, 0));
 
 struct Graph {
     int n;
-    Graph(int n): n(n), mat(n, vector<int>(n, 0)) {}
+    Graph(int n): n(n), mat(n, vector<int>(n, 0)), G(n, vector<int>(n, 0)) {}
     list<int> ver_set;
-    vector<vector<int>> mat;
+    vector<vector<int>> mat, G;
 
     void add_edge(int u, int v) {
-        // printf("%d, %d\n",u,v);
-        // puts("start add edge");
-        if(edges[u][v]) {
-            // puts("failed add edge1");
+        if(edges[u][v])
             return;
-        }
-        if(find(ver_set.begin(), ver_set.end(), v) != ver_set.end()) {
-            // puts("failed add edge2");
+        if(find(ver_set.begin(), ver_set.end(), v) != ver_set.end()) 
             return;
-        }
         edges[u][v]=mat[u][v] = 1;
+        G[u].push_back(v);
         ver_set.push_back(v);
-        // puts("complate add edge");
     }
 };
 
+void init(Graph &t, int n) {
+    t.ver_set.clear();
+    t.ver_set.push_back(0);
+}
+
 Graph construct0(int n, int d1, int d2) {
     Graph t0(n);
+    
+    init(t0, n);
 
     //STEP1
     t0.add_edge(0, 1);
@@ -73,6 +74,11 @@ Graph construct0(int n, int d1, int d2) {
 
 Graph construct1(int n, int d1, int d2) {
     Graph t1(n);
+    
+    init(t1, n);
+
+    t1.ver_set.clear();
+    t1.ver_set.push_back(0);
 
     //STEP1
     t1.add_edge(0, d1);
@@ -119,6 +125,11 @@ Graph construct1(int n, int d1, int d2) {
 
 Graph construct2(int n, int d1, int d2) {
     Graph t2(n);
+    
+    init(t2, n);
+    
+    t2.ver_set.clear();
+    t2.ver_set.push_back(0);
 
     //STEP1
     t2.add_edge(0, d2);
@@ -163,13 +174,10 @@ Graph construct2(int n, int d1, int d2) {
     return t2;
 }
 
-int main() {
-    int n, d1, d2;
-    cin >> n >> d1 >> d2;
-
+vector<Graph> construct(int n, int d1, int d2) {
     edges.resize(n);
     for(int i=0; i<n; i++)
-        edges[i].resize(n);
+        edges[i].assign(n, 0);
 
     Graph t0 = construct0(n, d1, d2);
 
@@ -190,14 +198,21 @@ int main() {
 
     vector<Graph> ts {t0, t1, t2, t3, t4, t5};
 
-    for(int x=0; x<6; x++) {
-        for(int i=0; i<n; i++) {
-            for(int j=0; j<n; j++) {
-                cout << ts[x].mat[i][j] << ' ';
-            }
-            cout << "\n";
-        }cout << "\n";
-    }
-    
-    return 0;
+    return ts;
 }
+
+// int main() {
+//     int n, d1, d2;
+//     cin >> n >> d1 >> d2;
+//     vector<Graph> ts = construct(n, d1, d2);
+//     for(int x=0; x<6; x++) {
+//         for(int i=0; i<n; i++) {
+//             for(int j=0; j<n; j++) {
+//                 cout << ts[x].mat[i][j] << ' ';
+//             }
+//             cout << "\n";
+//         }cout << "\n";
+//     }
+
+//     return 0;
+// }
