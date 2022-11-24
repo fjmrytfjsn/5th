@@ -46,7 +46,7 @@ Graph construct0(int n, int d1, int d2) {
     for(int i=1+1; i<d1; i++)
         t0.add_edge(i, i+1);
     
-    //STEP4
+    //STEP4-1
     for(int i=1+1; i<d1; i++) {
         t0.add_edge(i, i+d1);
         t0.add_edge(i, i+d2);
@@ -55,17 +55,17 @@ Graph construct0(int n, int d1, int d2) {
     }
 
     //STEP5-1
-    for(int i=d1+1; i<n-d1; i++)
+    for(int i=1; i<n-d1; i++)
         if(i!=d1 and i!=d2 and i!=n-d1 and i!=n-d2)
             t0.add_edge(i, i+d1);
 
     //STEP5-2
-    for(int i=d1+1; i<n-d2; i++)
+    for(int i=1; i<n-d2; i++)
         if(i!=d1 and i!=d2 and i!=n-d1 and i!=n-d2)
             t0.add_edge(i, i+d2);
 
     //STEP5-3
-    for(int i=d1+1; i<n-1; i++)
+    for(int i=1; i<n-1; i++)
         if(i!=d1 and i!=d2 and i!=n-d1 and i!=n-d2)
             t0.add_edge(i, i+1);
 
@@ -96,7 +96,7 @@ Graph construct1(int n, int d1, int d2) {
     for(int i=d1+1; i<d2; i++)
         t1.add_edge(i, i+1);
     
-    //STEP4
+    //STEP4-1
     for(int i=1+1; i<d2; i++) {
         if(i==d1) continue;
         t1.add_edge(i, i+d1);
@@ -106,17 +106,17 @@ Graph construct1(int n, int d1, int d2) {
     }
 
     //STEP5-1
-    for(int i=d2+1; i<n-d1; i++)
+    for(int i=1; i<n-d1; i++)
         if(i!=d1 and i!=d2 and i!=n-d1 and i!=n-d2)
             t1.add_edge(i, i+d1);
 
     //STEP5-2
-    for(int i=d2+1; i<n-d2; i++)
+    for(int i=1; i<n-d2; i++)
         if(i!=d1 and i!=d2 and i!=n-d1 and i!=n-d2)
             t1.add_edge(i, i+d2);
 
     //STEP5-3
-    for(int i=d2+1; i<n-1; i++)
+    for(int i=1; i<n-1; i++)
         if(i!=d1 and i!=d2 and i!=n-d1 and i!=n-d2)
             t1.add_edge(i, i+1);
 
@@ -147,7 +147,7 @@ Graph construct2(int n, int d1, int d2) {
     for(int i=d2+1; i<n-d2; i++)
         t2.add_edge(i, i+1);
     
-    //STEP4
+    //STEP4-1
     for(int i=d1+1; i<n-d2; i++) {
         if(i==d2) continue;
         t2.add_edge(i, i+d1);
@@ -157,17 +157,17 @@ Graph construct2(int n, int d1, int d2) {
     }
 
     //STEP5-1
-    for(int i=n-d2+1; i<n-d1; i++)
+    for(int i=1; i<n-d1; i++)
         if(i!=d1 and i!=d2 and i!=n-d1 and i!=n-d2)
             t2.add_edge(i, i+d1);
 
     //STEP5-2
-    for(int i=n-d2+1; i<n-d2; i++)
+    for(int i=1; i<n-d2; i++)
         if(i!=d1 and i!=d2 and i!=n-d1 and i!=n-d2)
             t2.add_edge(i, i+d2);
 
     //STEP5-3
-    for(int i=n-d2+1; i<n-1; i++)
+    for(int i=1; i<n-1; i++)
         if(i!=d1 and i!=d2 and i!=n-d1 and i!=n-d2)
             t2.add_edge(i, i+1);
 
@@ -197,6 +197,15 @@ vector<Graph> construct(int n, int d1, int d2) {
             if(t2.mat[i][j]) t5.add_edge((n-i+n)%n, (n-j+n)%n);
 
     vector<Graph> ts {t0, t1, t2, t3, t4, t5};
+
+    // for(int x=0; x<6; x++) {
+    //     for(int i=0; i<n; i++) {
+    //         for(int j=0; j<n; j++) {
+    //             cout << ts[x].mat[i][j] << ' ';
+    //         }
+    //         cout << "\n";
+    //     }cout << "\n";
+    // }
 
     return ts;
 }
