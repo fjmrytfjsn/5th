@@ -131,7 +131,7 @@ bool cr_check(vector<Graph> ts, int n, int d1, int d2) {
         return false;
     }
 
-    // printf("CR(%d, %d, %d) is successed\n", n, d1, d2);
+    printf("CR(%d, %d, %d) is successed\n", n, d1, d2);
 
     return true;    
 }
