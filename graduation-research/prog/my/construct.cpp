@@ -28,6 +28,53 @@ void init(Graph &t, int n) {
     t.ver_set.push_back(0);
 }
 
+Graph LOOP(int base, int n, int d1, int d2, Graph t) {
+    int now = base+d2;
+    while(1) {
+        if(now!=d1 and now!=d2 and now!=n-d1 and now!=n-d2) {
+            if(now+d1<=n-d2) {
+                t.add_edge(now, now+d1);
+            }else {
+                ;
+            }
+            if(now+d2<=n-d2) {
+                if(t.add_edge(now, now+d2)) {
+                    ;
+                }else {
+                    break;
+                }
+            }else {
+                break;
+            }
+        }else {
+            break;
+        }
+        now += d2;
+    }
+    return t;
+}
+
+Graph STEP5(int n, int d1, int d2, Graph t) {
+    //STEP5-1
+    for(int i=1; i<n-d1; i++)
+        if(i!=d1 and i!=d2 and i!=n-d1 and i!=n-d2) {
+            t.add_edge(i, i+d1);
+        }
+
+    //STEP5-2
+    for(int i=1; i<n-d2; i++) {
+        if(i!=d1 and i!=d2 and i!=n-d1 and i!=n-d2)
+            t.add_edge(i, i+d2);
+    }
+
+    //STEP5-3
+    for(int i=1; i<n-1; i++)
+        if(i!=d1 and i!=d2 and i!=n-d1 and i!=n-d2)
+            t.add_edge(i, i+1);
+
+    return t;
+}
+
 Graph construct0(int n, int d1, int d2) {
     Graph t0(n);
     
@@ -43,85 +90,84 @@ Graph construct0(int n, int d1, int d2) {
     t0.add_edge(1, (1+n-d1)%n);
     t0.add_edge(1, (1+n-d2)%n);
 
-    int now = 1+d2;
-    while(1) {
-        if(now!=d1 and now!=d2 and now!=n-d1 and now!=n-d2) {
-            if(now+d1<n-d1) {
-                t0.add_edge(now, now+d1);
-            }else {
-                ;
-            }
-            if(now+d2<n-d1) {
-                if(t0.add_edge(now, now+d2)) {
-                    ;
-                }else {
-                    break;
-                }
-            }else {
-                break;
-            }
-        }else {
-            break;
-        }
-        now += d2;
-    }
+    // int now = 1+d2;
+    // while(1) {
+    //     if(now!=d1 and now!=d2 and now!=n-d1 and now!=n-d2) {
+    //         if(now+d1<n-d1) {
+    //             t0.add_edge(now, now+d1);
+    //         }else {
+    //             ;
+    //         }
+    //         if(now+d2<n-d1) {
+    //             if(t0.add_edge(now, now+d2)) {
+    //                 ;
+    //             }else {
+    //                 break;
+    //             }
+    //         }else {
+    //             break;
+    //         }
+    //     }else {
+    //         break;
+    //     }
+    //     now += d2;
+    // }
+
+    t0 = LOOP(1, n, d1, d2, t0);
 
     //STEP3
     for(int i=1+1; i<d1; i++)
         t0.add_edge(i, i+1);
     
-    //STEP4-1
-    for(int i=1+1; i<d1; i++) {
+    //STEP4
+    for(int i=2; i<d1; i++) {
         t0.add_edge(i, i+d1);
         t0.add_edge(i, i+d2);
         t0.add_edge(i, (i+n-d1)%n);
         t0.add_edge(i, (i+n-d2)%n);
-        now = i+d2;
-        while(1) {
-            if(now!=d1 and now!=d2 and now!=n-d1 and now!=n-d2) {
-                if(now+d1<n-d1) {
-                    t0.add_edge(now, now+d1);
-                }else {
-                    ;
-                }
-                if(now+d2<n-d1) {
-                    if(t0.add_edge(now, now+d2)) {
-                        ;
-                    }else {
-                        break;
-                    }
-                }else {
-                    break;
-                }
-            }else {
-                break;
-            }
-            now += d2;
-        }
+        // now = i+d2;
+        // while(1) {
+        //     if(now!=d1 and now!=d2 and now!=n-d1 and now!=n-d2) {
+        //         if(now+d1<n-d1) {
+        //             t0.add_edge(now, now+d1);
+        //         }else {
+        //             ;
+        //         }
+        //         if(now+d2<n-d1) {
+        //             if(t0.add_edge(now, now+d2)) {
+        //                 ;
+        //             }else {
+        //                 break;
+        //             }
+        //         }else {
+        //             break;
+        //         }
+        //     }else {
+        //         break;
+        //     }
+        //     now += d2;
+        // }
+        t0 = LOOP(i, n, d1, d2, t0);
     }
 
-    //STEP5-1
-    for(int i=1; i<n-d1; i++)
-        if(i!=d1 and i!=d2 and i!=n-d1 and i!=n-d2) {
-            if(i%d1!=0) {
-                t0.add_edge(i, i+d1);
-            }
-        }
-
     // //STEP5-1
-    // for(int i=1; i<n-d1; i++)
-    //     if(i!=d1 and i!=d2 and i!=n-d1 and i!=n-d2)
+    // for(int i=1; i<n-d1; i++) {
+    //     if(i!=d1 and i!=d2 and i!=n-d1 and i!=n-d2) {
     //         t0.add_edge(i, i+d1);
-
+    //     }
+    // }
     // //STEP5-2
-    // for(int i=1; i<n-d2; i++)
+    // for(int i=1; i<n-d2; i++) {
     //     if(i!=d1 and i!=d2 and i!=n-d1 and i!=n-d2)
     //         t0.add_edge(i, i+d2);
-
-    //STEP5-3
-    for(int i=1; i<n-1; i++)
-        if(i!=d1 and i!=d2 and i!=n-d1 and i!=n-d2)
-            t0.add_edge(i, i+1);
+    // }
+    // //STEP5-3
+    // for(int i=1; i<n-1; i++) {
+    //     if(i!=d1 and i!=d2 and i!=n-d1 and i!=n-d2)
+    //         t0.add_edge(i, i+1);
+    // }
+    
+    t0 = STEP5(n, d1, d2, t0);
 
     return t0;
 }
@@ -141,28 +187,30 @@ Graph construct1(int n, int d1, int d2) {
     t1.add_edge(d1, d1+d2);
     t1.add_edge(d1, d1-d2+n);
 
-    int now = d1+d2;
-    while(1) {
-        if(now!=d1 and now!=d2 and now!=n-d1 and now!=n-d2) {
-            if(now+d1<n-d1) {
-                t1.add_edge(now, now+d1);
-            }else {
-                ;
-            }
-            if(now+d2<n-d1) {
-                if(t1.add_edge(now, now+d2)) {
-                    ;
-                }else {
-                    break;
-                }
-            }else {
-                break;
-            }
-        }else {
-            break;
-        }
-        now += d2;
-    }
+    // int now = d1+d2;
+    // while(1) {
+    //     if(now!=d1 and now!=d2 and now!=n-d1 and now!=n-d2) {
+    //         if(now+d1<n-d1) {
+    //             t1.add_edge(now, now+d1);
+    //         }else {
+    //             ;
+    //         }
+    //         if(now+d2<n-d1) {
+    //             if(t1.add_edge(now, now+d2)) {
+    //                 ;
+    //             }else {
+    //                 break;
+    //             }
+    //         }else {
+    //             break;
+    //         }
+    //     }else {
+    //         break;
+    //     }
+    //     now += d2;
+    // }
+
+    t1 = LOOP(d1, n, d1, d2, t1);
 
     //STEP3
     for(int i=d1-1; i>1; i--)
@@ -170,8 +218,8 @@ Graph construct1(int n, int d1, int d2) {
     for(int i=d1+1; i<d2; i++)
         t1.add_edge(i, i+1);
     
-    //STEP4-1
-    for(int i=1+1; i<d2; i++) {
+    //STEP4
+    for(int i=2; i<d2; i++) {
         if(i==d1) continue;
         t1.add_edge(i, i+d1);
         t1.add_edge(i, (i+n-d1)%n);
@@ -181,42 +229,51 @@ Graph construct1(int n, int d1, int d2) {
         }else {
             continue;
         }
-        now = i+d2;
-        while(1) {
-            if(now!=d1 and now!=d2 and now!=n-d1 and now!=n-d2) {
-                if(now+d1<n-d1) {
-                    t1.add_edge(now, now+d1);
-                }else {
-                    ;
-                }
-                if(now+d2<n-d1) {
-                    if(t1.add_edge(now, now+d2)) {
-                        ;
-                    }else {
-                        break;
-                    }
-                }else {
-                    break;
-                }
-            }else {
-                break;
-            }
-            now += d2;
-        }
+        // now = i+d2;
+        // while(1) {
+        //     if(now!=d1 and now!=d2 and now!=n-d1 and now!=n-d2) {
+        //         if(now+d1<n-d1) {
+        //             t1.add_edge(now, now+d1);
+        //         }else {
+        //             ;
+        //         }
+        //         if(now+d2<n-d1) {
+        //             if(t1.add_edge(now, now+d2)) {
+        //                 ;
+        //             }else {
+        //                 break;
+        //             }
+        //         }else {
+        //             break;
+        //         }
+        //     }else {
+        //         break;
+        //     }
+        //     now += d2;
+        // }
+
+        t1 = LOOP(i, n, d1, d2, t1);
     }
 
-    //STEP5-1
-    for(int i=1; i<n-d1; i++)
-        if(i!=d1 and i!=d2 and i!=n-d1 and i!=n-d2) {
-            t1.add_edge(i, i+d1);
-            // if(i<n-d2)
-            //     t1.add_edge(i, i+d2);
-        }
+    // //STEP5-1
+    // for(int i=1; i<n-d1; i++) {
+    //     if(i!=d1 and i!=d2 and i!=n-d1 and i!=n-d2) {
+    //         t1.add_edge(i, i+d1);
+    //     }
+    // }
+    // //STEP5-2
+    // for(int i=1; i<n-d2; i++) {
+    //     if(i!=d1 and i!=d2 and i!=n-d1 and i!=n-d2) {
+    //         t1.add_edge(i, i+d2);
+    //     }
+    // }
+    // //STEP5-3
+    // for(int i=1; i<n-1; i++) {
+    //     if(i!=d1 and i!=d2 and i!=n-d1 and i!=n-d2)
+    //         t1.add_edge(i, i+1);
+    // }
 
-    //STEP5-3
-    for(int i=1; i<n-1; i++)
-        if(i!=d1 and i!=d2 and i!=n-d1 and i!=n-d2)
-            t1.add_edge(i, i+1);
+    t1 = STEP5(n, d1, d2, t1);
 
     return t1;
 }
@@ -236,28 +293,31 @@ Graph construct2(int n, int d1, int d2) {
     t2.add_edge(d2, d2+d2);
     t2.add_edge(d2, (d2+n-d1)%n);
 
-    int now = d2+d2;
-    while(1) {
-        if(now!=d1 and now!=d2 and now!=n-d1 and now!=n-d2) {
-            if(now+d1<n-d1) {
-                t2.add_edge(now, now+d1);
-            }else {
-                ;
-            }
-            if(now+d2<n-d1) {
-                if(t2.add_edge(now, now+d2)) {
-                    ;
-                }else {
-                    break;
-                }
-            }else {
-                break;
-            }
-        }else {
-            break;
-        }
-        now += d2;
-    }
+    // int now = d2+d2;
+    // while(1) {
+    //     if(now!=d1 and now!=d2 and now!=n-d1 and now!=n-d2) {
+    //         if(now+d1<n-d1) {
+    //             t2.add_edge(now, now+d1);
+    //         }else {
+    //             ;
+    //         }
+    //         if(now+d2<n-d1) {
+    //             if(t2.add_edge(now, now+d2)) {
+    //                 ;
+    //             }else {
+    //                 break;
+    //             }
+    //         }else {
+    //             break;
+    //         }
+    //     }else {
+    //         break;
+    //     }
+    //     now += d2;
+    // }
+
+    t2 = LOOP(d2, n, d1, d2, t2);
+
 
     //STEP3
     for(int i=d2-1; i>d1; i--)
@@ -265,49 +325,58 @@ Graph construct2(int n, int d1, int d2) {
     for(int i=d2+1; i<n-d2; i++)
         t2.add_edge(i, i+1);
     
-    //STEP4-1
-    for(int i=d1+1; i<n-d2; i++) {
-        if(i==d2) continue;
+    //STEP4
+    for(int i=2; i<n-d2; i++) {
+        if(i==d1 or i==d2) continue;
         t2.add_edge(i, i+d1);
         t2.add_edge(i, i+d2);
         t2.add_edge(i, (i+n-d1)%n);
         t2.add_edge(i, (i+n-d2)%n);
-        now = i+d2;
-        while(1) {
-            if(now!=d1 and now!=d2 and now!=n-d1 and now!=n-d2) {
-                if(now+d1<n-d1) {
-                    t2.add_edge(now, now+d1);
-                }else {
-                    ;
-                }
-                if(now+d2<n-d1) {
-                    if(t2.add_edge(now, now+d2)) {
-                        ;
-                    }else {
-                        break;
-                    }
-                }else {
-                    break;
-                }
-            }else {
-                break;
-            }
-            now += d2;
-        }
+        // now = i+d2;
+        // while(1) {
+        //     if(now!=d1 and now!=d2 and now!=n-d1 and now!=n-d2) {
+        //         if(now+d1<n-d1) {
+        //             t2.add_edge(now, now+d1);
+        //         }else {
+        //             ;
+        //         }
+        //         if(now+d2<n-d1) {
+        //             if(t2.add_edge(now, now+d2)) {
+        //                 ;
+        //             }else {
+        //                 break;
+        //             }
+        //         }else {
+        //             break;
+        //         }
+        //     }else {
+        //         break;
+        //     }
+        //     now += d2;
+        // }
+
+        t2 = LOOP(i, n, d1, d2, t2);
     }
 
-    //STEP5-1
-    for(int i=1; i<n-d1; i++)
-        if(i!=d1 and i!=d2 and i!=n-d1 and i!=n-d2) {
-            t2.add_edge(i, i+d1);
-            // if(i<n-d2)
-            //     t1.add_edge(i, i+d2);
-        }
+    // //STEP5-1
+    // for(int i=1; i<n-d1; i++) {
+    //     if(i!=d1 and i!=d2 and i!=n-d1 and i!=n-d2) {
+    //         t2.add_edge(i, i+d1);
+    //     }
+    // }
+    // //STEP5-2
+    // for(int i=1; i<n-d2; i++) {
+    //     if(i!=d1 and i!=d2 and i!=n-d1 and i!=n-d2) {
+    //         t2.add_edge(i, i+d2);
+    //     }
+    // }
+    // //STEP5-3
+    // for(int i=1; i<n-1; i++) {
+    //     if(i!=d1 and i!=d2 and i!=n-d1 and i!=n-d2)
+    //         t2.add_edge(i, i+1);
+    // }
 
-    //STEP5-3
-    for(int i=1; i<n-1; i++)
-        if(i!=d1 and i!=d2 and i!=n-d1 and i!=n-d2)
-            t2.add_edge(i, i+1);
+    t2 = STEP5(n, d1, d2, t2);
 
     return t2;
 }
