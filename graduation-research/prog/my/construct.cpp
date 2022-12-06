@@ -46,12 +46,12 @@ Graph construct0(int n, int d1, int d2) {
     int now = 1+d2;
     while(1) {
         if(now!=d1 and now!=d2 and now!=n-d1 and now!=n-d2) {
-            if(now+d1<=n-d1) {
+            if(now+d1<n-d1) {
                 t0.add_edge(now, now+d1);
             }else {
                 ;
             }
-            if(now+d2<=n-d1) {
+            if(now+d2<n-d1) {
                 if(t0.add_edge(now, now+d2)) {
                     ;
                 }else {
@@ -79,12 +79,12 @@ Graph construct0(int n, int d1, int d2) {
         now = i+d2;
         while(1) {
             if(now!=d1 and now!=d2 and now!=n-d1 and now!=n-d2) {
-                if(now+d1<=n-d1) {
+                if(now+d1<n-d1) {
                     t0.add_edge(now, now+d1);
                 }else {
                     ;
                 }
-                if(now+d2<=n-d1) {
+                if(now+d2<n-d1) {
                     if(t0.add_edge(now, now+d2)) {
                         ;
                     }else {
@@ -144,12 +144,12 @@ Graph construct1(int n, int d1, int d2) {
     int now = d1+d2;
     while(1) {
         if(now!=d1 and now!=d2 and now!=n-d1 and now!=n-d2) {
-            if(now+d1<=n-d1) {
+            if(now+d1<n-d1) {
                 t1.add_edge(now, now+d1);
             }else {
                 ;
             }
-            if(now+d2<=n-d1) {
+            if(now+d2<n-d1) {
                 if(t1.add_edge(now, now+d2)) {
                     ;
                 }else {
@@ -184,12 +184,12 @@ Graph construct1(int n, int d1, int d2) {
         now = i+d2;
         while(1) {
             if(now!=d1 and now!=d2 and now!=n-d1 and now!=n-d2) {
-                if(now+d1<=n-d1) {
+                if(now+d1<n-d1) {
                     t1.add_edge(now, now+d1);
                 }else {
                     ;
                 }
-                if(now+d2<=n-d1) {
+                if(now+d2<n-d1) {
                     if(t1.add_edge(now, now+d2)) {
                         ;
                     }else {
@@ -239,12 +239,12 @@ Graph construct2(int n, int d1, int d2) {
     int now = d2+d2;
     while(1) {
         if(now!=d1 and now!=d2 and now!=n-d1 and now!=n-d2) {
-            if(now+d1<=n-d1) {
+            if(now+d1<n-d1) {
                 t2.add_edge(now, now+d1);
             }else {
                 ;
             }
-            if(now+d2<=n-d1) {
+            if(now+d2<n-d1) {
                 if(t2.add_edge(now, now+d2)) {
                     ;
                 }else {
@@ -275,12 +275,12 @@ Graph construct2(int n, int d1, int d2) {
         now = i+d2;
         while(1) {
             if(now!=d1 and now!=d2 and now!=n-d1 and now!=n-d2) {
-                if(now+d1<=n-d1) {
+                if(now+d1<n-d1) {
                     t2.add_edge(now, now+d1);
                 }else {
                     ;
                 }
-                if(now+d2<=n-d1) {
+                if(now+d2<n-d1) {
                     if(t2.add_edge(now, now+d2)) {
                         ;
                     }else {
