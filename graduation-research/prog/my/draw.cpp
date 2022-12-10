@@ -19,7 +19,7 @@ int main() {
     cr = "CR("+to_string(n)+", "+to_string(d1)+", "+to_string(d2)+")";
     directory_name = "./"+cr;
 
-    mkdir(directory_name.c_str());
+    mkdir(directory_name.c_str(), 0755);
 
     for(int t=0; t<6; t++) {
         file_name = directory_name+"/t"+to_string(t)+".tex";
