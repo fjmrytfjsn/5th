@@ -180,11 +180,10 @@ Graph construct0(int n, int d1, int d2) {
     //         t0.add_edge(i, i+d2);
     // }
     // //STEP5-3
-    // for(int i=1; i<n-1; i++) {
+    // for(int i=1; i<_n-1; i++) {
     //     if(i!=d1 and i!=d2 and i!=n-d1 and i!=n-d2)
     //         t0.add_edge(i, i+1);
     // }
-    
     t0 = STEP5(n, d1, d2, t0);
 
     return t0;
