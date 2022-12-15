@@ -12,7 +12,7 @@ int main() {
     puts("");
 
     for(n=n_min; n<=n_max; n++) {
-        for(d2=d1+2; d2*2<n; d2++) {
+        for(d2=d1+1; d2*2<n; d2++) {
             vector<Graph> ts = construct(n, d1, d2);
             if(!cr_check(ts, n, d1, d2)) ok = false;
         }
