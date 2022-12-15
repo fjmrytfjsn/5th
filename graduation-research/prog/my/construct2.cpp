@@ -40,13 +40,6 @@ Graph construct0(int n, int d1, int d2) {
         t0.add_edge(i, n-d2+i);
     }
 
-    // if(i==2*d1-1) {
-    //     t0.add_edge(i, i+1);
-    //     continue;
-    // }else {
-    //     ;
-    // }
-
     for(int i=1; i+d2<n-d2+1; i+=d2) {
         for(int j=0; j<d1-1; j++) {
             if(i+j+d2<n-d2+1) {
@@ -75,12 +68,14 @@ Graph construct0(int n, int d1, int d2) {
         }
     }
     
+
     if(n-d2+d1<=n-d1) {
         t0.add_edge(n-d2+d1-d2, n-d2+d1);
         for(int i=n-d2+d1+1; i<=n-d1; i++) {
             t0.add_edge(i-d1, i);
         }
     }
+
 
     for(int i=1; i<n; i++) {
         t0.add_edge(i, i+1);
@@ -121,10 +116,10 @@ Graph construct1(int n, int d1, int d2) {
         }
     }
 
-    for(int i=d2-d1+1; i+d1<n-d2+d1 i+=d2) {
-        for(int j=0; j<d1-1; j++) {
-            if(i+j+d1<n-d2+d1) {
-                t1.add_edge(i+j, i+j+d1);
+    for(int i=d2-1; i+d1<n-d2+d1; i+=d2) {
+        for(int j=0; j<max(d1-1, d2-d1); j++) {
+            if(i-j+d1<n-d2+d1) {
+                t1.add_edge(i-j, i-j+d1);
             }else {
                 ;
             }
@@ -143,28 +138,33 @@ Graph construct2(int n, int d1, int d2) {
     
     init(t2, n);
 
-    //STEP1
     t2.add_edge(0, d2);
 
-    //STEP2
-    t2.add_edge(d2, d2-1); 
-    t2.add_edge(d2, d2+1); 
-    t2.add_edge(d2, d2+d1);
-    t2.add_edge(d2, d2+d2);
-    t2.add_edge(d2, (d2+n-d1)%n);
+    for(int i=1; i<d1; i++) {
+        t2.add_edge(i+d1, i);
+    }
 
-    t2 = LOOP(d2, n, d1, d2, t2);
+    t2.add_edge(d2, d2-d1);
 
+    for(int i=d2; i<n-d2; i++) {
+        t2.add_edge(i, i+d2);
+    }
 
-    //STEP3
-    for(int i=d2-1; i>d1; i--)
-        t2.add_edge(i, i-1);
-    for(int i=d2+1; i<n-d2; i++)
+    if(n-d2+d1<n-d1+1) {
+        t2.add_edge(n-d2+d1-1, n-d2+d1);
+    }
+
+    for(int i=1; i<n-d2; i++) {
+        t2.add_edge(i, i+d2);
+    }
+
+    for(int i=d2; i<n-d2-d1; i++) {
+        t2.add_edge(i, i+d1);
+    }
+
+    for(int i=d2; i<n-1; i++) {
         t2.add_edge(i, i+1);
-
-    t2 = STEP4(n-d2, n, d1, d2, t2);
-
-    t2 = STEP5(n, d1, d2, t2);
+    }
 
     return t2;
 }
