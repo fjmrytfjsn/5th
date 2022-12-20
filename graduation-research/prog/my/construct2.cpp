@@ -55,7 +55,7 @@ Graph construct0(int n, int d1, int d2) {
     }
 
     for(int i=1; i+d1<n-d2+1; i+=d2) {
-        for(int j=0; j<d2-d1; j++) {
+        for(int j=0; j<d1-1; j++) {
             if(i+j+d1<n-d2+1) {
                 if(i+j!=d1 and i+j!=d2 and i+j!=n-d1 and i+j!=n-d2) {
                     t0.add_edge(i+j, i+j+d1);
@@ -123,6 +123,8 @@ Graph construct1(int n, int d1, int d2) {
             }
         }
     }
+
+    t1.add_edge(2*d2-d1, 2*d2);
 
     for(int i=d2; i<n-d2+d1; i++) {
         t1.add_edge(i, i+1);
