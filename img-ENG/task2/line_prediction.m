@@ -6,29 +6,28 @@ function line_prediction(file_name)
 
 img = double(imread(file_name));
 
-pred = zeros(size(img, 1), size(img, 2));
+[col_size row_size] = size(img);
 
-for row = 1:size(img, 1)
+pred = double(zeros(col_size, row_size));
+diff = double(zeros(col_size, row_size));
+
+for row = 1:col_size
     pred(row, 1) = img(row, 1);
 end
 
-for row = 1:size(img, 1)
-    for col = 2:size(img, 2)
+for row = 1:col_size
+    for col = 2:row_size
         pred(row, col) = img(row, col-1);
     end
 end
 
-dif = pred - img;
+diff = pred - img;
 
-var = var(vec(dif));
-
-save -text img.text img;
-save -text pred.text pred;
-save -text dif.text dif;
+var = var(vec(diff));
 
 disp(var);
 
-hist = myhistgram(dif, -255, 255, 'raw');
+hist = myhistgram(round(diff), -255, 255, 'raw');
 save hist.dat hist
 
 % create-hist.gp
