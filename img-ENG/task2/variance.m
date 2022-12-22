@@ -6,11 +6,11 @@ function variance(file_name)
 
 img = imread(file_name);
 
-variance = var(vec(img));
+var = var(vec(img));
+
+disp(var);
 
 hist = myhistgram(img, 0, 255, 'raw');
 save hist.dat hist
-
-% create-hist.gp
 
 endfunction
