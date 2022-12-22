@@ -1,5 +1,5 @@
 #include<bits/stdc++.h>
-#include"construct.cpp"
+#include"construct2.cpp"
 #include"cr_check.cpp"
 
 int main() {
