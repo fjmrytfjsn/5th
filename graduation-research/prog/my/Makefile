@@ -1,4 +1,4 @@
-SRCS	= main.cpp
+SRCS	= main2.cpp
 TARGET	= $(SRCS:%.cpp=%.out)
 CC	= g++
 CFLAGS	= -Wall -O2
