@@ -59,7 +59,11 @@ Graph construct0(int n, int d1, int d2) {
             }
         }
         for(int j=i+d1-1-1; j+d1<i+d2; j+=d1) {
-            t0.add_edge(j, j+d1);
+            if(j+d1<n-d2+1) {
+                t0.add_edge(j, j+d1);
+            }else {
+                ;
+            }
         }
     }
 
