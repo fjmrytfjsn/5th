@@ -1,13 +1,16 @@
-#include<bits/stdc++.h>
-#include<sys/stat.h>
-#include"../construct2.cpp"
+#include <fstream>
+#include <iostream>
+#include <math.h>
+#include <sys/stat.h>
+#include "../construct2.cpp"
 using namespace std;
 
 int main() {
-    int n, d1=4, d2;
+    int n, d1, d2;
     string cr;
 
     cout<<"nを入力してください>>"; cin>>n;
+    cout<<"d1を入力してください>>"; cin>>d1;
     cout<<"d2を入力してください>>"; cin>>d2;
 
     vector<Graph> ts = construct(n, d1, d2);
