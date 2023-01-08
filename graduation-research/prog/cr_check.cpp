@@ -1,152 +1,157 @@
-#include<vector>
-#include<cstdio>
-#include<functional>
-using std::vector;
-using std::printf;
+#include<bits/stdc++.h>
+using namespace std;
 
-struct DisjointSetUnion {
-    int n;
-    std::vector<int> data;
-    DisjointSetUnion(int n): n(n), data(n, -1) {}
+bool is_spanning_tree(vector<Graph> ts, int n, int d1, int d2) {
+    vector<int> V;
+    for(int i=0; i<n; i++) V.push_back(i);
+    vector<vector<int>> E(n, vector<int>(n, 0));
+    for(int i=0; i<n; i++)
+        for(int j=0; j<n; j++)
+            if((j-i+n)%n==1 or (j-i+n)%n==d1 or (j-i+n)%n==d2) E[i][j]=E[j][i]=1;
+    vector<int> existed_vertex;
 
-    int root(int x) {
-        if(data[x] < 0) return x;
-        return data[x] = root(data[x]);
-    }
-    
-    void unite(int x, int y){
-        x = root(x);
-        y = root(y);
-        if(x == y) return;
-        if(data[x] > data[y]) std::swap(x, y);
-        data[x] += data[y];
-        data[y] = x;
-    }
-
-    int count_components(){
-        int ret = 0;
-        for(int d: data) if(d < 0) ret++;
-        return ret;
-    }
-};
-
-
-struct Graph {
-    int n, m;
-    std::vector< std::vector<int> > edges, mat;
-    DisjointSetUnion dsu;
-    Graph(int n): n(n), m(0), edges(n), mat(n, std::vector<int>(n, 0)), dsu(n) {}
-    
-    void add_edge(int u, int v) {
-        if(mat[u][v] == 1 or mat[v][u] == 1){
-            fprintf(stderr, "%d-%d edge already exists\n", u, v);
-            assert(false);
-        }
-        edges[u].push_back(v);
-        edges[v].push_back(u);
-        mat[u][v] = mat[v][u] = 1;
-        dsu.unite(u, v);
-        m++;
-    }
-    
-    bool is_spanning_tree(bool verbose = false) {
-        if(!verbose) return (m == n-1) and (dsu.count_components() == 1);
-        if(m < n-1) printf("too less edges: %d\n", m);
-        else if(m > n-1) printf("too much edges: %d\n", m);
-        else if(dsu.count_components() != 1) printf("graph is disconnected\n");
-        else return true;
-        return false;
-    }
-
-    void print_matrix() {
-        printf("G = (%d, %d)\n", n, m);
-        for(int i = 0; i < n; i++) {
-            printf("%3d: ", i);
-            for(int j = 0; j < n; j++){
-                if(i == j) printf("x");
-                else printf("%d", mat[i][j]);
-            }
-            printf("\n");
-        }
-        return;
-    }
-
-    std::vector<int> find_path(int start, int goal) {
-        std::vector<int> path;
-        std::vector<bool> visited(n, false);
-        std::function<bool(int)> dfs = [&](int current_vertex){
-            if(visited[current_vertex]) return false;
-            visited[current_vertex] = true;
-            if(current_vertex == goal) {
-                path.push_back(current_vertex);
-                return true;
-            }
-            bool is_path_element = false;
-            for(int next_vertex: edges[current_vertex]) {
-                if(visited[next_vertex]) continue;
-                if(dfs(next_vertex)) is_path_element = true;
-            }
-            if(!is_path_element) return false;
-            path.push_back(current_vertex);
-            return true;
-        };
-        assert(dfs(start));
-        std::reverse(path.begin(), path.end());
-        return path;
-    }
-};
-
-
-bool cr_check(std::vector<Graph> ts, bool verbose = false){
-    bool entire_ok = true;
-    if(verbose) {
-        puts("I. Spanning Tree Check");
-        for(int i = 0; i < ts.size(); i++) {
-            if(ts[i].is_spanning_tree()) printf("  t%d ... OK\n", i);
-            else printf("  t%d ... NG\n", i);
-        }
-        puts("");
-        puts("II. Independent Check");
-    }
-    for(int i = 0; i < ts.size(); i++) {
-        if(!ts[i].is_spanning_tree()) entire_ok = false;
-    }
-
-    int n = ts.at(0).n;
-    for(int goal = 1; goal < n; goal++) {
-        if(verbose) printf("%3d - %3d path", 0, goal);
-        /*
-        for(int i = 0; i < ts.size(); i++) {
-            printf("\n  t%d:", i);
-            for(int v: ts[i].find_path(0, goal)) printf(" %d", v);
-            puts("");
-        }
-        //*/
-
-        bool ok = true;
-        for(int i = 0; i < ts.size(); i++) {
-            std::vector<int> ipass = ts[i].find_path(0, goal);
-            std::set<int> ipassv(ipass.begin(), ipass.end());
-            for(int j = i+1; j < ts.size(); j++) {
-                std::vector<int> jpass = ts[j].find_path(0, goal);
-                std::set<int> commonv, jpassv(jpass.begin(), jpass.end());
-                std::set_intersection(
-                    ipassv.begin(), ipassv.end(),
-                    jpassv.begin(), jpassv.end(),
-                    std::inserter(commonv, commonv.end())
-                );
-                if(commonv.size() > 2){
-                    entire_ok = ok = false;
-                    if(verbose){
-                        printf("\nNG: t%d and t%d is not indepent\n", i, j);
-                        printf("common vertex on %d - %d path:", 0, goal);
-                        for(int v: commonv) printf(" %d", v); puts("");
+    for(int i=0; i<6; i++) {
+        existed_vertex.assign(1, 0);
+        for(int u=0; u<n; u++) {
+            for(int v=1; v<n; v++) {
+                if(ts[i].mat[u][v]) {
+                    if(!E[u][v]) {
+                        printf("The edge (%d, %d) of t%d does not exists in CR(%d, %d, %d).\n", u, v, i, n, d1, d2);
+                        return false;
                     }
+                    existed_vertex.push_back(v);
                 }
             }
         }
-        if(verbose and ok) puts(" ... OK");
+        sort(existed_vertex.begin(), existed_vertex.end());
+        if(existed_vertex==V) {
+            // printf("t%d is spanning tree\n", i);
+            ;
+        }
+        else {
+            vector<int> diff;
+            set_difference(V.begin(), V.end(), existed_vertex.begin(), existed_vertex.end(), back_inserter(diff));
+            printf("The following vertices do not exist in t%d\n", i);
+            for (int j: diff)
+                cout << j << ' ';
+            puts("");
+            return false;
+        }
     }
-    
-    return entire_ok;
+    return true;
 }
+
+vector<vector<int>> find_path(int n, vector<vector<int>> G) {
+    vector<bool> visited(n, false);
+    vector<int> path;
+    vector<vector<int>> path_set(n, vector<int>(0));
+    queue<vector<int>> que;
+
+    visited.assign(n, false);
+    vector<int>().swap(path);
+    queue<vector<int>>().swap(que);
+
+    visited[0] = true;
+    path.push_back(0);
+    que.push(path);
+    path_set[0] = path;
+    
+
+    while(!que.empty()) {
+        path=que.front();
+        for(auto next_v : G[path.back()]) {
+            if(visited[next_v]) continue;
+            visited[next_v] = true;
+            path.push_back(next_v);
+            que.push(path);
+            path_set[path.back()] = path;
+            path=que.front();
+        }
+        que.pop();
+    }
+
+    return path_set;
+}
+
+bool is_independent(vector<Graph> ts, int n, int d1, int d2) {
+    vector<vector<int>> existed_edge(n, vector<int>(n, 0));
+    vector<vector<int>> path(6, vector<int>(0, 0));
+    for(int i=0; i<6; i++) {
+        for(int u=0; u<n; u++) {
+            for(int v=1; v<n; v++) {
+                if(ts[i].mat[u][v]) {
+                    if(existed_edge[u][v]) {
+                        printf("The edge (%d, %d) of t%d is already exists.\n", u, v, i);
+                        return false;
+                    }
+                    existed_edge[u][v]=1;
+                }
+            }
+        }
+    }
+
+    vector<vector<int>> existed_vertex(n, vector<int>(n, 0));
+    vector<vector<vector<int>>> path_set(6, vector<vector<int>>(n, vector<int>(0)));
+
+    for(int i=0; i<6; i++) path_set[i] = find_path(n, ts[i].G);
+
+    for(auto path: path_set) {
+        for(int goal=1; goal<n; goal++) {
+            for(int j=1; j<path[goal].size()-1; j++) {
+                if(!existed_vertex[goal][path[goal][j]]) {
+                    existed_vertex[goal][path[goal][j]] = 1;
+                }
+                else {
+                    printf("Vertex %d overlaps on the path to vertex %d.\n", path[goal][j], goal);
+                    return false;
+                }
+            }
+        }
+    }
+
+    return true;
+}
+
+bool cr_check(vector<Graph> ts, int n, int d1, int d2) {
+    if(is_spanning_tree(ts, n, d1, d2)) {
+        // puts("trees are spanning tree");
+        ;
+    }
+    else {
+        printf("CR(%d, %d, %d) is failed\n", n, d1, d2);
+        return false;
+    }
+
+    if(is_independent(ts, n, d1, d2)) {
+        // puts("trees are independent");
+        ;
+    }
+    else {
+        printf("CR(%d, %d, %d) is failed\n", n, d1, d2);
+        return false;
+    }
+
+    printf("CR(%d, %d, %d) is successed\n", n, d1, d2);
+
+    return true;    
+}
+
+// int main() {
+//     bool ok;
+//     int n, d1=4, d2;
+//     int n_min, n_max;
+//     cout<<"nの最小値を入力してください>>"; cin>>n_min;
+//     cout<<"nの最大値を入力してください>>"; cin>>n_max;
+
+//     for(n=n_min; n<=n_max; n++) {
+//         for(d2=d1+2; d2*2<n; d2++){ 
+//             vector<Graph> ts = construct(n, d1, d2);
+//             ok=cr_check(ts, n, d1, d2);
+//         }
+//     }
+
+//     if(ok) printf("%d - %d : successed\n", n_min, n_max);
+//     else printf("%d - %d : failed\n", n_min, n_max);
+
+//     return 0;
+// }
