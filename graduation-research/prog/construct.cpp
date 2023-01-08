@@ -7,7 +7,7 @@ vector<vector<int>> edges(0, vector<int>(0, 0));
 
 struct Graph {
     int n;
-    Graph(int n): n(n), mat(n, vector<int>(n, 0)), G(n, vector<int>(n)), ver_list(0,0) {}
+    Graph(int n): n(n), mat(n, vector<int>(n, 0)), G(n, vector<int>(1, 0)), ver_list(0,0) {}
     list<int> ver_list;
     vector<vector<int>> mat, G;
 
@@ -128,9 +128,12 @@ Graph construct2(int n, int d1, int d2) {
 
 Graph reverse(Graph org, int n) {
     Graph conv(n);
-    for(int i=0; i<n; i++)
+    for(int i=0; i<n; i++) {
         for(int j=1; j<n; j++)
             if(org.mat[i][j]) conv.add_edge((n-i+n)%n, (n-j+n)%n);
+        for(auto ver:org.G[i])
+            conv.G[(n-i)%n].push_back((n-ver)%n);
+    }
     
     return conv;
 }

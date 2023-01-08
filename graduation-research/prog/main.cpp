@@ -1,6 +1,6 @@
-#include<iostream>
-#include"construct.cpp"
-#include"cr_check.cpp"
+#include <iostream>
+#include "construct.cpp"
+#include "cr_check.cpp"
 
 int main() {
     bool ok = true;
@@ -10,6 +10,9 @@ int main() {
     cout<<"nの最小値を入力してください>>"; cin>>n_min;
     cout<<"nの最大値を入力してください>>"; cin>>n_max;
     cout<<"d1の値を入力してください>>"; cin>>d1;
+    puts("");
+
+    cout<<"n:"<<n_min<<"-"<<n_max<<" d1:"<<d1<<endl;
     puts("");
 
     for(n=n_min; n<=n_max; n++) {

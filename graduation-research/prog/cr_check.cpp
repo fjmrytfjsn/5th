@@ -1,4 +1,5 @@
-#include<bits/stdc++.h>
+#include <vector>
+#include <queue>
 using namespace std;
 
 bool is_spanning_tree(vector<Graph> ts, int n, int d1, int d2) {
@@ -56,7 +57,6 @@ vector<vector<int>> find_path(int n, vector<vector<int>> G) {
     que.push(path);
     path_set[0] = path;
     
-
     while(!que.empty()) {
         path=que.front();
         for(auto next_v : G[path.back()]) {

@@ -1,9 +1,4 @@
-SRCS	= main.cpp
-TARGET	= $(SRCS:%.cpp=%.out)
-CC	= g++
-CFLAGS	= -Wall -O2
-LFLAGS	= 
-
-all:	$(SRCS)
-	g++ $(SRCS) -o $(TARGET)
-
+all:	main
+	g++ main.cpp -o main.out
+	g++ draw.cpp -o draw.out
+	g++ path.cpp -o path.out
