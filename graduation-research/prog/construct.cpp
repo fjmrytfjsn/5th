@@ -130,7 +130,8 @@ Graph reverse(Graph org, int n) {
     Graph conv(n);
     for(int i=0; i<n; i++) {
         for(int j=1; j<n; j++)
-            if(org.mat[i][j]) conv.add_edge((n-i+n)%n, (n-j+n)%n);
+            if(org.mat[i][j])
+                conv.mat[(n-i)%n][(n-j)%n] = 1;
         for(auto ver:org.G[i])
             conv.G[(n-i)%n].push_back((n-ver)%n);
     }
