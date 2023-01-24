@@ -1,15 +1,17 @@
+#include <iostream>
 #include <vector>
 #include <queue>
+#include "construct.cpp"
 using namespace std;
 
 bool is_spanning_tree(vector<Graph> ts, int n, int d1, int d2) {
     vector<int> V;
-    for(int i=0; i<n; i++) V.push_back(i);
     vector<vector<int>> E(n, vector<int>(n, 0));
+    vector<int> existed_vertex;
+    for(int i=0; i<n; i++) V.push_back(i);
     for(int i=0; i<n; i++)
         for(int j=0; j<n; j++)
             if((j-i+n)%n==1 or (j-i+n)%n==d1 or (j-i+n)%n==d2) E[i][j]=E[j][i]=1;
-    vector<int> existed_vertex;
 
     for(int i=0; i<6; i++) {
         existed_vertex.assign(1, 0);
@@ -25,10 +27,7 @@ bool is_spanning_tree(vector<Graph> ts, int n, int d1, int d2) {
             }
         }
         sort(existed_vertex.begin(), existed_vertex.end());
-        if(existed_vertex==V) {
-            // printf("t%d is spanning tree\n", i);
-            ;
-        }
+        if(existed_vertex==V){}
         else {
             vector<int> diff;
             set_difference(V.begin(), V.end(), existed_vertex.begin(), existed_vertex.end(), back_inserter(diff));
@@ -38,6 +37,7 @@ bool is_spanning_tree(vector<Graph> ts, int n, int d1, int d2) {
             puts("");
             return false;
         }
+        cout<<" t"<<i<<" - OK"<<endl;
     }
     return true;
 }
@@ -90,41 +90,48 @@ bool is_independent(vector<Graph> ts, int n, int d1, int d2) {
         }
     }
 
-    vector<vector<int>> existed_vertex(n, vector<int>(n, 0));
+    vector<int> existed_vertex(n, 0);
     vector<vector<vector<int>>> path_set(6, vector<vector<int>>(n, vector<int>(0)));
 
     for(int i=0; i<6; i++) path_set[i] = find_path(n, ts[i].G);
 
-    for(auto path: path_set) {
-        for(int goal=1; goal<n; goal++) {
-            for(int j=1; j<path[goal].size()-1; j++) {
-                if(!existed_vertex[goal][path[goal][j]]) {
-                    existed_vertex[goal][path[goal][j]] = 1;
-                }
+    for(int goal=1; goal<n; goal++) {
+        existed_vertex.assign(n, 0);
+        cout<<" path 0 - "<<goal<<endl;
+        for(int t=0; t<6; t++) {
+            cout<<"  t"<<t<<": "<<"0 ";
+            for(int i=1; i<path_set[t][goal].size()-1; i++) {
+                int ver = path_set[t][goal][i];
+                cout<<ver<<" ";
+                if(ver==0) continue;
+                if(!existed_vertex[ver]) existed_vertex[ver] = 1;
                 else {
-                    printf("Vertex %d overlaps on the path to vertex %d.\n", path[goal][j], goal);
+                    printf("Vertex %d overlaps on the path to vertex %d.\n", ver, goal);
                     return false;
                 }
             }
+            cout<<goal<<endl;
         }
+        puts(" - OK");
+        cout<<endl;
     }
 
     return true;
 }
 
 bool cr_check(vector<Graph> ts, int n, int d1, int d2) {
+    puts("1. sppaning tree check");
     if(is_spanning_tree(ts, n, d1, d2)) {
-        // puts("trees are spanning tree");
-        ;
+        puts("trees are spanning tree\n");
     }
     else {
         printf("CR(%d, %d, %d) is failed\n", n, d1, d2);
         return false;
     }
 
+    puts("2. independent check");
     if(is_independent(ts, n, d1, d2)) {
-        // puts("trees are independent");
-        ;
+        puts("trees are independent\n");
     }
     else {
         printf("CR(%d, %d, %d) is failed\n", n, d1, d2);
@@ -136,22 +143,11 @@ bool cr_check(vector<Graph> ts, int n, int d1, int d2) {
     return true;    
 }
 
-// int main() {
-//     bool ok;
-//     int n, d1=4, d2;
-//     int n_min, n_max;
-//     cout<<"nの最小値を入力してください>>"; cin>>n_min;
-//     cout<<"nの最大値を入力してください>>"; cin>>n_max;
-
-//     for(n=n_min; n<=n_max; n++) {
-//         for(d2=d1+2; d2*2<n; d2++){ 
-//             vector<Graph> ts = construct(n, d1, d2);
-//             ok=cr_check(ts, n, d1, d2);
-//         }
-//     }
-
-//     if(ok) printf("%d - %d : successed\n", n_min, n_max);
-//     else printf("%d - %d : failed\n", n_min, n_max);
-
-//     return 0;
-// }
+int main(){
+    int n, d1, d2;
+    cin>>n>>d1>>d2;
+    cout<<"CR("<<n<<", "<<d1<<", "<<d2<<")\n"<<endl;
+    vector<Graph> ts = construct(n, d1, d2);
+    cr_check(ts, n, d1, d2);
+    return 0;
+}

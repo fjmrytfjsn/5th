@@ -37,17 +37,14 @@ Graph construct0(int n, int d1, int d2) {
         for(int j=0; j<d1-1; j++)
             if(i+j+d2<n-d2+1)
                 t.add_edge(i+j, i+j+d2);
-            else break;
 
     for(int i=1; i+d1<n-d2+1; i+=d2) {
         for(int j=0; j<d1-1; j++)
             if(i+j+d1<n-d2+1)
                 t.add_edge(i+j, i+j+d1);
-            else break;
         for(int j=i+2*d1-1-1; j+d1<i+d2; j+=d1)
             if(j+d1<n-d2+1)
                 t.add_edge(j, j+d1);
-            else break;
     }
 
     for(int i=n-(d2-d1); i<n-d1+1; i+=d1) {
@@ -99,11 +96,10 @@ Graph construct2(int n, int d1, int d2) {
     Graph t(n);
 
     t.add_edge(0, d2);
+    t.add_edge(d2, d2-d1);
 
     for(int i=1; i<d1; i++)
         t.add_edge(i+d1, i);
-
-    t.add_edge(d2, d2-d1);
 
     for(int i=d2-d1; i>2*d1-1; i-=d1)
         t.add_edge(i, i-d1);
