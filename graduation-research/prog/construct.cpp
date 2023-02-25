@@ -33,24 +33,34 @@ Graph construct0(int n, int d1, int d2) {
     for(int i=1; i<d1; i++)
         t.add_edge(i, n-d2+i);
 
-    for(int i=1; i+d2<n-d2+1; i+=d2)
-        for(int j=0; j<d1-1; j++)
-            if(i+j+d2<n-d2+1)
-                t.add_edge(i+j, i+j+d2);
-
-    for(int i=1; i+d1<n-d2+1; i+=d2) {
-        for(int j=0; j<d1-1; j++)
-            if(i+j+d1<n-d2+1)
-                t.add_edge(i+j, i+j+d1);
-        for(int j=i+2*d1-1-1; j+d1<i+d2; j+=d1)
-            if(j+d1<n-d2+1)
-                t.add_edge(j, j+d1);
+    int base = 1;
+    while(base+d2<n-d2+1) {
+        for(int i=0; i<d1-1; i++)
+            if(base+i+d2<n-d2+1)
+                t.add_edge(base+i, base+i+d2);
+        base += d2;
     }
 
-    for(int i=n-(d2-d1); i<n-d1+1; i+=d1) {
-        t.add_edge(i-1, i);
-        for(int j=1; j<d1; j++)
-            t.add_edge(i+j-d1, i+j);
+    base = 1;
+    while(base+d1<n-d2+1) {
+        for(int i=0; i<d1-1; i++)
+            if(base+i+d1<n-d2+1)
+                t.add_edge(base+i, base+i+d1);
+        int j=base+2*d1-2;
+        while(j+d1<base+d2) {
+            if(j+d1<n-d2+1)
+                t.add_edge(j, j+d1);
+            j += d1;
+        }
+        base += d2;
+    }
+
+    base = n-(d2-d1);
+    while(base<n-d1+1) {
+        t.add_edge(base-1, base);
+        for(int i=1; i<d1; i++)
+            t.add_edge(base+i-d1, base+i);
+        base += d1;
     }
 
     for(int i=1; i<n-1; i++)
@@ -73,18 +83,27 @@ Graph construct1(int n, int d1, int d2) {
     for(int i=1; i<d1; i++)
         t.add_edge(i, i+d2);
 
-    for(int i=d1; i+d2<n-max(d1-1, d2-d1); i+=d2)
-        for(int j=0; j<d2-d1; j++)
-            if(i+j+d2<n-max(d1-1, d2-d1))
-                t.add_edge(i+j, i+j+d2);
+    int base = d1;
+    while(base+d2<n-max(d1-1, d2-d1)) {
+        for(int i=0; i<d2-d1; i++)
+            if(base+i+d2<n-max(d1-1, d2-d1))
+                t.add_edge(base+i, base+i+d2);
+        base += d2;
+    }
 
-    for(int i=d2-max(d1-1, d2-d1); i+d1<n-d1+1; i+=d2)
-        for(int j=0; j<max(d1-1, d2-d1); j++)
-            if(i+j+d1<n-d1+1)
-                t.add_edge(i+j, i+j+d1);
+    base = d2-max(d1-1, d2-d1);
+    while(base+d1<n-d1+1) {
+        for(int i=0; i<max(d1-1, d2-d1); i++)
+            if(base+i+d1<n-d1+1)
+                t.add_edge(base+i, base+i+d1);
+        base += d2;
+    }
 
-    for(int i=2*d2; i<n-max(d1-1, d2-d1); i+=d2)
-    	t.add_edge(i-d1, i);
+    base = 2*d2;
+    while(base<n-max(d1-1, d2-d1)) {
+    	t.add_edge(base-d1, base);
+        base += d2;
+    }
 
     for(int i=d1; i<n-1; i++)
         t.add_edge(i, i+1);
@@ -101,8 +120,11 @@ Graph construct2(int n, int d1, int d2) {
     for(int i=1; i<d1; i++)
         t.add_edge(i+d1, i);
 
-    for(int i=d2-d1; i>2*d1-1; i-=d1)
-        t.add_edge(i, i-d1);
+    int base = d2-d1;
+    while(base>2*d1-1) {
+        t.add_edge(base, base-d1);
+        base -= d1;
+    }
 
     for(int i=d2; i>d1; i--)
         t.add_edge(i, i-1);

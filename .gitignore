@@ -1,2 +1,4 @@
 .tmp.driveupload/
 .tmp.drivedownload/
+DB/11/tpch/SF2/LINEITEM.tbl
+DB/11/tpch/SF2/ORDERS.tbl

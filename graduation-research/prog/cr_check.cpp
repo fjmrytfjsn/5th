@@ -4,44 +4,6 @@
 #include "construct.cpp"
 using namespace std;
 
-bool is_spanning_tree(vector<Graph> ts, int n, int d1, int d2) {
-    vector<int> V;
-    vector<vector<int>> E(n, vector<int>(n, 0));
-    vector<int> existed_vertex;
-    for(int i=0; i<n; i++) V.push_back(i);
-    for(int i=0; i<n; i++)
-        for(int j=0; j<n; j++)
-            if((j-i+n)%n==1 or (j-i+n)%n==d1 or (j-i+n)%n==d2) E[i][j]=E[j][i]=1;
-
-    for(int i=0; i<6; i++) {
-        existed_vertex.assign(1, 0);
-        for(int u=0; u<n; u++) {
-            for(int v=1; v<n; v++) {
-                if(ts[i].mat[u][v]) {
-                    if(!E[u][v]) {
-                        printf("The edge (%d, %d) of t%d does not exists in CR(%d, %d, %d).\n", u, v, i, n, d1, d2);
-                        return false;
-                    }
-                    existed_vertex.push_back(v);
-                }
-            }
-        }
-        sort(existed_vertex.begin(), existed_vertex.end());
-        if(existed_vertex==V){}
-        else {
-            vector<int> diff;
-            set_difference(V.begin(), V.end(), existed_vertex.begin(), existed_vertex.end(), back_inserter(diff));
-            printf("The following vertices do not exist in t%d\n", i);
-            for (int j: diff)
-                cout << j << ' ';
-            puts("");
-            return false;
-        }
-        cout<<" t"<<i<<" - OK"<<endl;
-    }
-    return true;
-}
-
 vector<vector<int>> find_path(int n, vector<vector<int>> G) {
     vector<bool> visited(n, false);
     vector<int> path;
@@ -73,7 +35,31 @@ vector<vector<int>> find_path(int n, vector<vector<int>> G) {
     return path_set;
 }
 
-bool is_independent(vector<Graph> ts, int n, int d1, int d2) {
+bool is_spanning_tree(vector<Graph> ts, vector<vector<vector<int>>> path_set, int n, int d1, int d2) {
+    for(int t=0; t<3; t++) {
+        int count_edges = 0;
+        for(int i=0; i<n; i++)
+            for(int j=0; j<n; j++)
+                if(ts[t].mat[i][j]) count_edges++;
+        if(count_edges!=n-1) {
+            printf("The number of edges is %d. The number of edges must be n-1.\n", count_edges);
+            return false;
+        }
+
+        for(int goal=1; goal<n; goal++) {
+            int path_len = path_set[t][goal].size();
+            if(path_set[t][goal][path_len-1]!=goal) {
+                printf("The vertex %d cannot be reached from the root.\n", goal);
+                return false;
+            }
+        }
+
+        cout<<" t"<<t<<" - OK"<<endl;
+    }
+    return true;
+}
+
+bool is_independent(vector<Graph> ts, vector<vector<vector<int>>> path_set, int n, int d1, int d2) {
     vector<vector<int>> existed_edge(n, vector<int>(n, 0));
     vector<vector<int>> path(6, vector<int>(0, 0));
     for(int i=0; i<6; i++) {
@@ -91,10 +77,6 @@ bool is_independent(vector<Graph> ts, int n, int d1, int d2) {
     }
 
     vector<int> existed_vertex(n, 0);
-    vector<vector<vector<int>>> path_set(6, vector<vector<int>>(n, vector<int>(0)));
-
-    for(int i=0; i<6; i++) path_set[i] = find_path(n, ts[i].G);
-
     for(int goal=1; goal<n; goal++) {
         existed_vertex.assign(n, 0);
         cout<<" path 0 - "<<goal<<endl;
@@ -120,8 +102,11 @@ bool is_independent(vector<Graph> ts, int n, int d1, int d2) {
 }
 
 bool cr_check(vector<Graph> ts, int n, int d1, int d2) {
+    vector<vector<vector<int>>> path_set(6, vector<vector<int>>(n, vector<int>(0)));
+    for(int i=0; i<6; i++) path_set[i] = find_path(n, ts[i].G);
+
     puts("1. sppaning tree check");
-    if(is_spanning_tree(ts, n, d1, d2)) {
+    if(is_spanning_tree(ts, path_set, n, d1, d2)) {
         puts("trees are spanning tree\n");
     }
     else {
@@ -130,7 +115,7 @@ bool cr_check(vector<Graph> ts, int n, int d1, int d2) {
     }
 
     puts("2. independent check");
-    if(is_independent(ts, n, d1, d2)) {
+    if(is_independent(ts, path_set, n, d1, d2)) {
         puts("trees are independent\n");
     }
     else {

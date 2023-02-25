@@ -1,26 +1,25 @@
 #include <iostream>
-#include "construct.cpp"
+#include <stdlib.h>
+// #include "construct.cpp"
 #include "cr_check.cpp"
 
-int main() {
+int main(int argc, char *argv[]) {
     bool ok = true;
     int n, d1, d2;
 
     int n_min, n_max;
-    cout<<"nの最小値を入力してください>>"; cin>>n_min;
-    cout<<"nの最大値を入力してください>>"; cin>>n_max;
-    cout<<"d1の値を入力してください>>"; cin>>d1;
-    puts("");
-
-    cout<<"n:"<<n_min<<"-"<<n_max<<" d1:"<<d1<<endl;
-    puts("");
+    n_min = 10;
+    n_max = atoi(argv[1]);
+    // d1 = atoi(argv[3]);
 
     for(n=n_min; n<=n_max; n++) {
-        for(d2=d1+1; d2*2<n; d2++) {
-            vector<Graph> ts = construct(n, d1, d2);
-            if(!cr_check(ts, n, d1, d2)) ok = false;
+        for(d1=3; d1<=(n+2)/4; d1++) {
+            for(d2=d1+1; d2*2<n; d2++) {
+                vector<Graph> ts = construct(n, d1, d2);
+                if(!cr_check(ts, n, d1, d2)) ok = false;
+            }
+            cout<<endl;
         }
-        cout<<endl;
     }
     
     puts("");
